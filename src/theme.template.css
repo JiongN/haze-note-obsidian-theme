@@ -1,0 +1,1494 @@
+/*
+Haze Note 0.1.15
+Personal macOS-first Obsidian theme by jn.
+No remote assets. No sound effects.
+*/
+
+/* @settings
+name: Haze Note 中文设置
+id: haze-note-settings
+settings:
+  -
+    id: haze-appearance-heading
+    title: 内置壁纸与玻璃效果
+    type: heading
+    level: 1
+    collapsed: false
+  -
+    id: haze-wallpaper
+    title: 内置壁纸
+    description: 六张壁纸均嵌入主题文件，不依赖网络、插件或 macOS 桌面透明。
+    type: class-select
+    allowEmpty: false
+    default: haze-wallpaper-desert
+    options:
+      -
+        label: 沙漠黄昏
+        value: haze-wallpaper-desert
+      -
+        label: 紫色极光
+        value: haze-wallpaper-purple
+      -
+        label: 蓝紫暮色
+        value: haze-wallpaper-blue
+      -
+        label: 薰衣草薄雾
+        value: haze-wallpaper-lavender
+      -
+        label: 暖纸中性色
+        value: haze-wallpaper-paper
+      -
+        label: 石墨灰
+        value: haze-wallpaper-graphite
+  -
+    id: haze-surface-opacity
+    title: 整体玻璃浓度
+    description: 正文与界面框架共用同一浓度；标题栏、Tab、路径栏和侧栏使用连续的单层表面。底部状态区会自动保留可读性保护层。推荐 0.48–0.76。
+    type: variable-number-slider
+    default: 0.72
+    min: 0.18
+    max: 0.94
+    step: 0.01
+  -
+    id: haze-layout-heading
+    title: 阅读与编辑
+    type: heading
+    level: 1
+    collapsed: false
+  -
+    id: file-line-width
+    title: 正文宽度
+    type: variable-number-slider
+    default: 820
+    min: 560
+    max: 1200
+    step: 10
+    format: px
+  -
+    id: font-text-size
+    title: 正文字号
+    type: variable-number-slider
+    default: 17
+    min: 13
+    max: 24
+    step: 1
+    format: px
+  -
+    id: haze-title-size
+    title: 主标题字号
+    description: 同时作用于笔记标题和一级标题。
+    type: variable-number-slider
+    default: 30
+    min: 22
+    max: 50
+    step: 1
+    format: px
+  -
+    id: haze-title-position
+    title: 主标题位置
+    description: 控制笔记标题和一级标题的水平对齐。
+    type: class-select
+    allowEmpty: false
+    default: haze-title-left
+    options:
+      -
+        label: 居左
+        value: haze-title-left
+      -
+        label: 居中
+        value: haze-title-center
+      -
+        label: 居右
+        value: haze-title-right
+  -
+    id: line-height-normal
+    title: 行间距
+    description: 同时作用于阅读区与实时预览编辑器。
+    type: variable-number-slider
+    default: 1.82
+    min: 1.35
+    max: 2.4
+    step: 0.05
+  -
+    id: p-spacing
+    title: 段落间距
+    description: 仅调整阅读区段落之间的留白。
+    type: variable-number-slider
+    default: 1.32
+    min: 0.4
+    max: 2.4
+    step: 0.05
+    format: em
+  -
+    id: haze-interface-heading
+    title: 界面
+    type: heading
+    level: 1
+    collapsed: true
+  -
+    id: haze-rainbow-folders
+    title: 彩色根文件夹
+    description: 不启用 Haze Note 文件夹插件时，也为七个预设根文件夹提供颜色。
+    type: class-toggle
+    default: true
+*/
+
+:root {
+  --haze-surface-opacity: 0.72;
+  --haze-title-size: 30px;
+  --haze-view-header-height: 46px;
+  --haze-bottombar-height: 34px;
+  --haze-window-radius: 18px;
+  --haze-ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --haze-ease-move: cubic-bezier(0.77, 0, 0.175, 1);
+  --haze-fast: 140ms;
+  --haze-normal: 190ms;
+  --haze-slow: 260ms;
+  --haze-topbar-height: 44px;
+  --haze-mono: "SF Mono", Menlo, "LXGW WenKai Mono", "PingFang SC", monospace;
+  --haze-ui: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", sans-serif;
+  --haze-coral: #eb6f72;
+  --haze-orange: #d68b52;
+  --haze-yellow: #e2b84a;
+  --haze-green: #55ad83;
+  --haze-cyan: #43a9bd;
+  --haze-blue: #4296d8;
+  --haze-purple: #a675d1;
+  --haze-pink: #d77ba4;
+  --haze-wallpaper-desert-image: url("__HAZE_WALLPAPER_DESERT__");
+  --haze-wallpaper-purple-image: url("__HAZE_WALLPAPER_PURPLE__");
+  --haze-wallpaper-blue-image: url("__HAZE_WALLPAPER_BLUE__");
+  --haze-wallpaper-lavender-image: url("__HAZE_WALLPAPER_LAVENDER__");
+  --haze-wallpaper-paper-image: url("__HAZE_WALLPAPER_PAPER__");
+  --haze-wallpaper-graphite-image: url("__HAZE_WALLPAPER_GRAPHITE__");
+  --haze-wallpaper-image: var(--haze-wallpaper-desert-image);
+}
+
+body.haze-wallpaper-desert {
+  --haze-wallpaper-image: var(--haze-wallpaper-desert-image);
+}
+
+body.haze-wallpaper-purple {
+  --haze-wallpaper-image: var(--haze-wallpaper-purple-image);
+}
+
+body.haze-wallpaper-blue {
+  --haze-wallpaper-image: var(--haze-wallpaper-blue-image);
+}
+
+body.haze-wallpaper-lavender {
+  --haze-wallpaper-image: var(--haze-wallpaper-lavender-image);
+}
+
+body.haze-wallpaper-paper {
+  --haze-wallpaper-image: var(--haze-wallpaper-paper-image);
+}
+
+body.haze-wallpaper-graphite {
+  --haze-wallpaper-image: var(--haze-wallpaper-graphite-image);
+}
+
+body,
+.theme-light,
+.theme-dark {
+  --font-interface-theme: var(--haze-ui);
+  --font-text-theme: var(--haze-mono);
+  --font-monospace-theme: var(--haze-mono);
+  --font-text-size: 17px;
+  --line-height-normal: 1.82;
+  --file-line-width: 820px;
+  --radius-s: 7px;
+  --radius-m: 12px;
+  --radius-l: 18px;
+  --input-radius: 10px;
+  --button-radius: 10px;
+  --tab-radius-active: 0;
+  --modal-radius: 18px;
+  --checkbox-radius: 5px;
+  --divider-width: 1px;
+  --divider-width-hover: 1px;
+  --nav-item-size: 14px;
+  --nav-item-weight: 540;
+  --nav-item-padding: 7px 9px;
+  --icon-opacity: 0.72;
+  --icon-opacity-hover: 1;
+  --bold-weight: 700;
+  --heading-spacing: 1.8em;
+  --p-spacing: 1.32em;
+  --link-decoration: none;
+  --link-decoration-hover: none;
+  --embed-border-start: 0;
+  --blockquote-border-thickness: 2px;
+  /* Keep note properties as an inline list, not a framed card or form. */
+  --metadata-border-radius: 0;
+  --metadata-padding: 0;
+  --metadata-property-padding: 4px 0;
+  --metadata-property-radius: 0;
+  --metadata-property-radius-hover: 0;
+  --metadata-property-radius-focus: 0;
+  --metadata-property-background: transparent;
+  --metadata-property-background-hover: transparent;
+  --metadata-property-background-active: transparent;
+  --metadata-property-box-shadow-hover: none;
+  --metadata-property-box-shadow-focus: none;
+}
+
+.theme-dark {
+  color-scheme: dark;
+  --accent-h: 36;
+  --accent-s: 47%;
+  --accent-l: 58%;
+  --color-base-00: #232426;
+  --color-base-05: #28292b;
+  --color-base-10: #2d2e30;
+  --color-base-20: #353638;
+  --color-base-25: #3b3c3e;
+  --color-base-30: #454648;
+  --color-base-35: #505153;
+  --color-base-40: #626365;
+  --color-base-50: #7c7d7f;
+  --color-base-60: #98999b;
+  --color-base-70: #b8b9bb;
+  --color-base-100: #ececed;
+  --background-primary: rgba(36, 37, 39, var(--haze-surface-opacity));
+  --background-primary-alt: rgba(42, 43, 45, 0.9);
+  --background-secondary: rgba(31, 32, 34, var(--haze-surface-opacity));
+  --background-secondary-alt: rgba(38, 39, 41, 0.92);
+  --background-modifier-border: rgba(232, 232, 233, 0.1);
+  --background-modifier-border-hover: rgba(238, 238, 239, 0.2);
+  --background-modifier-border-focus: rgba(185, 132, 65, 0.54);
+  --background-modifier-hover: rgba(236, 236, 237, 0.07);
+  --background-modifier-active-hover: rgba(236, 236, 237, 0.11);
+  --background-modifier-form-field: rgba(16, 17, 18, 0.28);
+  --background-modifier-message: rgba(32, 33, 35, 0.95);
+  --interactive-normal: rgba(240, 240, 240, 0.07);
+  --interactive-hover: rgba(240, 240, 240, 0.12);
+  --interactive-accent: #b9823f;
+  --interactive-accent-hover: #ca9451;
+  --text-normal: #e8e4e7;
+  --text-muted: #aaa4ad;
+  --text-faint: #777181;
+  --text-accent: #d7a85d;
+  --text-accent-hover: #efc47c;
+  --text-on-accent: #242424;
+  --text-highlight-bg: rgba(226, 184, 74, 0.24);
+  --code-background: rgba(18, 19, 20, 0.38);
+  --code-normal: #ddd8df;
+  --code-comment: #87818b;
+  --code-function: #d7a85d;
+  --code-keyword: #cc8eb7;
+  --code-string: #8cc7ad;
+  --code-value: #b8a6dc;
+  --blockquote-color: #c8c2ca;
+  --blockquote-border-color: #b58a55;
+  --h1-color: #f0e9ef;
+  --h2-color: #e6b84d;
+  --h3-color: #d8c5df;
+  --h4-color: #b8a8c2;
+  --haze-app-gradient:
+    radial-gradient(circle at 12% 5%, rgba(108, 111, 115, 0.48), transparent 34%),
+    radial-gradient(circle at 88% 18%, rgba(71, 73, 76, 0.42), transparent 38%),
+    linear-gradient(145deg, #55585b 0%, #383a3d 42%, #232426 100%);
+  --haze-panel-shadow: 0 22px 58px rgba(10, 8, 20, 0.34);
+  --haze-card-shadow: 0 14px 32px rgba(7, 7, 12, 0.22);
+  --haze-main-surface: rgba(36, 37, 39, var(--haze-surface-opacity));
+  --haze-side-surface: rgba(30, 31, 33, var(--haze-surface-opacity));
+}
+
+.theme-light {
+  color-scheme: light;
+  --accent-h: 36;
+  --accent-s: 47%;
+  --accent-l: 50%;
+  --color-base-00: #f5f2ef;
+  --color-base-05: #f1eeeb;
+  --color-base-10: #ebe8e6;
+  --color-base-20: #e3dfdc;
+  --color-base-25: #dad5d1;
+  --color-base-30: #cec8c3;
+  --color-base-35: #bdb6b0;
+  --color-base-40: #aaa29c;
+  --color-base-50: #8c847f;
+  --color-base-60: #6d6662;
+  --color-base-70: #4a4542;
+  --color-base-100: #292624;
+  --background-primary: rgba(241, 240, 238, var(--haze-surface-opacity));
+  --background-primary-alt: rgba(235, 231, 227, 0.94);
+  --background-secondary: rgba(226, 226, 224, var(--haze-surface-opacity));
+  --background-secondary-alt: rgba(213, 216, 215, 0.95);
+  --background-modifier-border: rgba(54, 48, 44, 0.1);
+  --background-modifier-border-hover: rgba(54, 48, 44, 0.2);
+  --background-modifier-border-focus: rgba(168, 116, 52, 0.46);
+  --background-modifier-hover: rgba(55, 50, 47, 0.055);
+  --background-modifier-active-hover: rgba(55, 50, 47, 0.1);
+  --background-modifier-form-field: rgba(255, 255, 255, 0.56);
+  --background-modifier-message: rgba(246, 242, 238, 0.96);
+  --interactive-normal: rgba(255, 255, 255, 0.5);
+  --interactive-hover: rgba(255, 255, 255, 0.75);
+  --interactive-accent: #a8793f;
+  --interactive-accent-hover: #b98a4e;
+  --text-normal: #302d2b;
+  --text-muted: #6f6965;
+  --text-faint: #9b9490;
+  --text-accent: #ac772f;
+  --text-accent-hover: #8e5c1e;
+  --text-on-accent: #fffaf3;
+  --text-highlight-bg: rgba(226, 184, 74, 0.26);
+  --code-background: rgba(255, 255, 255, 0.58);
+  --code-normal: #383330;
+  --code-comment: #98908a;
+  --code-function: #9d6728;
+  --code-keyword: #9f5675;
+  --code-string: #397964;
+  --code-value: #705d9c;
+  --blockquote-color: #655f5b;
+  --blockquote-border-color: #b08143;
+  --h1-color: #292624;
+  --h2-color: #927018;
+  --h3-color: #5c514b;
+  --h4-color: #6c625d;
+  --haze-app-gradient:
+    radial-gradient(circle at 8% 12%, rgba(161, 213, 226, 0.9), transparent 36%),
+    radial-gradient(circle at 86% 88%, rgba(226, 166, 112, 0.78), transparent 42%),
+    linear-gradient(145deg, #d8eef1 0%, #e9e7e4 48%, #e4c3a6 100%);
+  --haze-panel-shadow: 0 22px 58px rgba(67, 58, 50, 0.2);
+  --haze-card-shadow: 0 14px 32px rgba(56, 47, 42, 0.12);
+  --haze-main-surface: rgba(241, 240, 238, var(--haze-surface-opacity));
+  --haze-side-surface: rgba(225, 225, 223, var(--haze-surface-opacity));
+}
+
+/* Workspace underlay and one continuous glass shell. */
+body.theme-light {
+  --background-primary: rgba(248, 245, 242, 0.16);
+  --background-primary-alt: rgba(242, 238, 235, 0.24);
+  --background-secondary: rgba(229, 229, 227, 0.22);
+  --background-secondary-alt: rgba(220, 220, 218, 0.3);
+  --haze-main-surface: rgba(241, 240, 238, var(--haze-surface-opacity));
+  --haze-side-surface: rgba(225, 225, 223, var(--haze-surface-opacity));
+  --haze-side-border: rgba(49, 50, 49, 0.1);
+  --haze-root-border: rgba(49, 50, 49, 0.1);
+  /* One shell surface: title bar, tabs, view header, ribbon and side panes. */
+  --haze-shell-surface: var(--haze-side-surface);
+  --haze-bottom-surface: rgba(202, 205, 204, clamp(0.4, calc(var(--haze-surface-opacity) + 0.16), 0.96));
+  --haze-chrome-text: rgb(39, 40, 39);
+  --haze-chrome-muted: rgba(39, 40, 39, 0.86);
+  --haze-chrome-hover: rgba(39, 40, 39, 0.055);
+  --haze-context-text: #5b5652;
+}
+
+body.theme-dark {
+  --background-primary: rgba(35, 36, 38, 0.18);
+  --background-primary-alt: rgba(41, 42, 44, 0.24);
+  --background-secondary: rgba(30, 31, 33, 0.22);
+  --background-secondary-alt: rgba(37, 38, 40, 0.3);
+  --haze-main-surface: rgba(36, 37, 39, var(--haze-surface-opacity));
+  --haze-side-surface: rgba(30, 31, 33, var(--haze-surface-opacity));
+  --haze-side-border: rgba(235, 235, 236, 0.09);
+  --haze-root-border: rgba(235, 235, 236, 0.09);
+  --haze-shell-surface: var(--haze-side-surface);
+  --haze-bottom-surface: rgba(22, 23, 25, clamp(0.4, calc(var(--haze-surface-opacity) + 0.16), 0.96));
+  --haze-chrome-text: rgb(245, 245, 246);
+  --haze-chrome-muted: rgba(245, 245, 246, 0.86);
+  --haze-chrome-hover: rgba(242, 242, 243, 0.07);
+  --haze-context-text: #cbc6ca;
+}
+
+/* Paint the 4K wallpaper exactly once. Every interface surface sits above it. */
+body:not(.is-mobile) {
+  background-color: #3a3b3c;
+  background-image:
+    linear-gradient(rgba(32, 33, 34, 0.06), rgba(32, 33, 34, 0.12)),
+    var(--haze-wallpaper-image);
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: var(--haze-ui);
+}
+
+body:not(.is-mobile) .app-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 var(--haze-window-radius) var(--haze-window-radius);
+  background: transparent;
+}
+
+body:not(.is-mobile) .horizontal-main-container,
+body:not(.is-mobile) .workspace {
+  background: transparent;
+}
+
+body:not(.is-mobile) .workspace {
+  padding: 0;
+  gap: 0;
+}
+
+body:not(.is-mobile) .workspace-ribbon,
+body:not(.is-mobile) .workspace-split.mod-left-split,
+body:not(.is-mobile) .workspace-split.mod-right-split {
+  background: var(--haze-shell-surface);
+  color: var(--haze-chrome-text);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+body:not(.is-mobile) .workspace-ribbon {
+  border-right: 1px solid var(--haze-side-border);
+}
+
+body:not(.is-mobile) .workspace-ribbon.mod-left::before,
+body:not(.is-mobile) .workspace-ribbon.mod-left.is-collapsed {
+  background: var(--haze-shell-surface);
+  border: 0;
+  transition: none;
+}
+
+body:not(.is-mobile) .workspace-split.mod-left-split {
+  border-right: 1px solid var(--haze-side-border);
+}
+
+body:not(.is-mobile) .workspace-split.mod-right-split {
+  border-left: 1px solid var(--haze-side-border);
+}
+
+body:not(.is-mobile) .workspace-split.mod-root {
+  background-color: transparent;
+  background-image:
+    linear-gradient(
+      to bottom,
+      var(--haze-shell-surface) 0,
+      var(--haze-shell-surface) calc(var(--haze-topbar-height) + var(--haze-view-header-height)),
+      transparent calc(var(--haze-topbar-height) + var(--haze-view-header-height))
+    ),
+    linear-gradient(
+      to top,
+      var(--haze-shell-surface) 0,
+      var(--haze-shell-surface) var(--haze-bottombar-height),
+      transparent var(--haze-bottombar-height)
+    );
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+body:not(.is-mobile) .workspace-split.mod-root .workspace-tabs,
+body:not(.is-mobile) .workspace-split.mod-left-split .workspace-tabs,
+body:not(.is-mobile) .workspace-split.mod-right-split .workspace-tabs,
+body:not(.is-mobile) .sidebar-toggle-button {
+  --tab-container-background: transparent;
+}
+
+body:not(.is-mobile) .workspace-split.mod-root,
+body:not(.is-mobile) .workspace-split.mod-left-split,
+body:not(.is-mobile) .workspace-split.mod-right-split {
+  border-radius: 0;
+  overflow: hidden;
+}
+
+/*
+Sidebar toggles are high-frequency navigation. Obsidian can resize these panes
+without decorative interpolation; making the change immediate also prevents
+intermediate translucent frames from looking like ghost images.
+*/
+body:not(.is-mobile) .workspace,
+body:not(.is-mobile) .workspace-ribbon,
+body:not(.is-mobile) .workspace-split.mod-left-split,
+body:not(.is-mobile) .workspace-split.mod-right-split {
+  transition: none;
+}
+
+body:not(.is-mobile) .workspace-tabs,
+body:not(.is-mobile) .workspace-tab-container,
+body:not(.is-mobile) .workspace-leaf,
+body:not(.is-mobile) .workspace-leaf-content,
+body:not(.is-mobile) .view-content,
+body:not(.is-mobile) .markdown-source-view,
+body:not(.is-mobile) .markdown-reading-view,
+body:not(.is-mobile) .markdown-source-view.mod-cm6 .cm-editor,
+body:not(.is-mobile) .markdown-source-view.mod-cm6 .cm-scroller {
+  background: transparent;
+}
+
+body:not(.is-mobile) .workspace-leaf-content[data-type="markdown"] .view-content,
+body:not(.is-mobile) .markdown-source-view.mod-cm6,
+body:not(.is-mobile) .markdown-source-view.mod-cm6 .cm-editor,
+body:not(.is-mobile) .markdown-source-view.mod-cm6 .cm-scroller,
+body:not(.is-mobile) .markdown-source-view.mod-cm6 .cm-sizer,
+body:not(.is-mobile) .markdown-source-view.mod-cm6 .cm-contentContainer,
+body:not(.is-mobile) .markdown-reading-view,
+body:not(.is-mobile) .markdown-preview-view,
+body:not(.is-mobile) .markdown-preview-sizer {
+  background-color: transparent;
+  background-image: none;
+}
+
+/* The root split paints the two header rows; content starts its own surface below. */
+body:not(.is-mobile) .workspace-split.mod-root .view-content {
+  background-color: transparent;
+  background-image: linear-gradient(
+    to bottom,
+    var(--haze-main-surface) 0,
+    var(--haze-main-surface) calc(100% - var(--haze-bottombar-height)),
+    transparent calc(100% - var(--haze-bottombar-height))
+  );
+}
+
+body.mod-macos .titlebar {
+  min-height: var(--haze-topbar-height);
+  background: transparent;
+  border-bottom: 0;
+  color: var(--haze-chrome-text);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+body.mod-macos .titlebar-inner {
+  min-height: var(--haze-topbar-height);
+}
+
+body.mod-macos .titlebar-text {
+  color: var(--haze-chrome-text);
+}
+
+body.mod-macos .titlebar-button-container,
+body.mod-macos .titlebar-button-container.mod-left,
+body.mod-macos .titlebar-button-container.mod-right {
+  color: var(--haze-chrome-muted);
+  background-color: transparent !important;
+  background-image: none !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+body:not(.is-mobile) .sidebar-toggle-button,
+body:not(.is-mobile) .sidebar-toggle-button .clickable-icon {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body:not(.is-mobile) .sidebar-toggle-button .clickable-icon:hover {
+  color: var(--haze-chrome-text);
+  background: var(--haze-chrome-hover);
+}
+
+body.mod-macos.is-hidden-frameless:not(.is-popout-window):not(.is-mobile) .sidebar-toggle-button.mod-right {
+  color: var(--haze-chrome-muted);
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.workspace-split.mod-left-split .sidebar-toggle-button,
+.workspace-split.mod-right-split .sidebar-toggle-button,
+.workspace-split.mod-left-split .workspace-tab-header-tab-list,
+.workspace-split.mod-right-split .workspace-tab-header-tab-list,
+.workspace-split.mod-left-split .workspace-tab-header-new-tab,
+.workspace-split.mod-right-split .workspace-tab-header-new-tab {
+  color: var(--haze-chrome-text);
+  background: transparent;
+}
+
+.workspace-tab-header-container {
+  min-height: var(--haze-topbar-height);
+  border-bottom: 1px solid var(--haze-root-border);
+  background-color: transparent !important;
+  background-image: none !important;
+  color: var(--haze-chrome-text);
+}
+
+.workspace-split.mod-left-split .workspace-tab-header-container,
+.workspace-split.mod-right-split .workspace-tab-header-container {
+  border-bottom-color: var(--haze-side-border);
+  background-color: transparent !important;
+  background-image: none !important;
+  color: var(--haze-chrome-text);
+}
+
+.workspace-tab-header-container-inner,
+.workspace-tab-header-spacer,
+.workspace-tab-header-tab-list,
+.workspace-tab-header-new-tab {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body.mod-macos .workspace-tabs.mod-top-left-space .workspace-tab-header-container {
+  padding-left: 74px;
+}
+
+.workspace-tab-header {
+  min-height: calc(var(--haze-topbar-height) - 1px);
+  margin: 0;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 0;
+  color: var(--haze-chrome-muted);
+  transition:
+    background-color var(--haze-fast) var(--haze-ease),
+    color var(--haze-fast) var(--haze-ease);
+}
+
+.workspace-tab-header::before,
+.workspace-tab-header::after {
+  display: none;
+}
+
+.workspace-tab-header-inner {
+  width: 100%;
+  border: 0 !important;
+  border-radius: 0;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.workspace-tab-header-inner::before,
+.workspace-tab-header-inner::after {
+  display: none !important;
+  content: none !important;
+}
+
+.workspace-tab-header:hover {
+  color: var(--haze-chrome-text);
+  background: var(--haze-chrome-hover) !important;
+}
+
+.workspace-tab-header.is-active,
+.workspace-tab-header.is-active:hover {
+  color: var(--haze-chrome-text);
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.workspace-tab-header.is-active .workspace-tab-header-inner {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.workspace-split.mod-left-split .workspace-tab-header,
+.workspace-split.mod-right-split .workspace-tab-header {
+  border-right-color: var(--haze-side-border);
+  color: var(--haze-chrome-muted);
+}
+
+.workspace-split.mod-left-split .workspace-tab-header:hover,
+.workspace-split.mod-right-split .workspace-tab-header:hover {
+  color: var(--haze-chrome-text);
+  background: var(--haze-chrome-hover);
+  box-shadow: none;
+}
+
+.workspace-split.mod-left-split .workspace-tab-header.is-active,
+.workspace-split.mod-right-split .workspace-tab-header.is-active {
+  color: var(--haze-chrome-text);
+  background: transparent;
+  box-shadow: none;
+}
+
+.workspace-tab-header-inner-title {
+  font-family: var(--haze-ui);
+  font-weight: 620;
+  text-shadow: none;
+  text-overflow: ellipsis;
+}
+
+.workspace-tab-header-inner-close-button {
+  opacity: 0;
+  transition: opacity var(--haze-fast) var(--haze-ease);
+}
+
+.workspace-tab-header:hover .workspace-tab-header-inner-close-button,
+.workspace-tab-header.is-active .workspace-tab-header-inner-close-button {
+  opacity: 0.64;
+}
+
+.workspace-tab-header-tab-list,
+.workspace-tab-header-new-tab,
+.clickable-icon {
+  border-radius: 9px;
+  transition:
+    color var(--haze-fast) var(--haze-ease),
+    background-color var(--haze-fast) var(--haze-ease),
+    transform var(--haze-fast) var(--haze-ease);
+}
+
+.workspace-tab-header-tab-list:active,
+.workspace-tab-header-new-tab:active {
+  transform: scale(0.97);
+}
+
+/* One quiet state language for the ribbon and both side docks. */
+body:not(.is-mobile) .workspace-ribbon .side-dock-ribbon-action,
+body:not(.is-mobile) .workspace-ribbon .clickable-icon,
+body:not(.is-mobile) .workspace-split.mod-left-split .clickable-icon,
+body:not(.is-mobile) .workspace-split.mod-right-split .clickable-icon {
+  color: var(--haze-chrome-muted);
+  background: transparent;
+  box-shadow: none;
+}
+
+body:not(.is-mobile) .workspace-ribbon .side-dock-ribbon-action,
+body:not(.is-mobile) .workspace-ribbon .clickable-icon,
+body:not(.is-mobile) .sidebar-toggle-button,
+body:not(.is-mobile) .sidebar-toggle-button .clickable-icon,
+body:not(.is-mobile) .workspace-split.mod-left-split .clickable-icon,
+body:not(.is-mobile) .workspace-split.mod-right-split .clickable-icon {
+  transition: none;
+  transform: none;
+}
+
+body:not(.is-mobile) .workspace-ribbon .side-dock-ribbon-action:hover,
+body:not(.is-mobile) .workspace-ribbon .clickable-icon:hover,
+body:not(.is-mobile) .workspace-split.mod-left-split .clickable-icon:hover,
+body:not(.is-mobile) .workspace-split.mod-right-split .clickable-icon:hover {
+  color: var(--haze-chrome-text);
+  background: var(--haze-chrome-hover);
+}
+
+body:not(.is-mobile) .workspace-ribbon .side-dock-ribbon-action.is-active,
+body:not(.is-mobile) .workspace-ribbon .clickable-icon.is-active,
+body:not(.is-mobile) .workspace-ribbon .clickable-icon[aria-pressed="true"],
+body:not(.is-mobile) .workspace-ribbon .side-dock-ribbon-action:active,
+body:not(.is-mobile) .workspace-ribbon .clickable-icon:active,
+body:not(.is-mobile) .workspace-ribbon .clickable-icon.has-active-menu {
+  color: var(--haze-chrome-text) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body:not(.is-mobile) .sidebar-toggle-button.is-active,
+body:not(.is-mobile) .sidebar-toggle-button[aria-pressed="true"],
+body:not(.is-mobile) .sidebar-toggle-button .clickable-icon.is-active,
+body:not(.is-mobile) .sidebar-toggle-button .clickable-icon:active,
+body:not(.is-mobile) .sidebar-toggle-button .clickable-icon.has-active-menu,
+body:not(.is-mobile) .sidebar-toggle-button.is-active .clickable-icon,
+body:not(.is-mobile) .sidebar-toggle-button[aria-pressed="true"] .clickable-icon {
+  color: var(--haze-chrome-text);
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body:not(.is-mobile) .workspace.is-left-sidedock-open .sidebar-toggle-button.mod-left,
+body:not(.is-mobile) .workspace.is-left-sidedock-open .sidebar-toggle-button.mod-left .clickable-icon,
+body:not(.is-mobile) .workspace.is-right-sidedock-open .sidebar-toggle-button.mod-right,
+body:not(.is-mobile) .workspace.is-right-sidedock-open .sidebar-toggle-button.mod-right .clickable-icon {
+  color: var(--haze-chrome-text) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body:not(.is-mobile) .workspace-ribbon .clickable-icon:focus-visible,
+body:not(.is-mobile) .sidebar-toggle-button .clickable-icon:focus-visible,
+body:not(.is-mobile) .workspace-split.mod-left-split .clickable-icon:focus-visible,
+body:not(.is-mobile) .workspace-split.mod-right-split .clickable-icon:focus-visible {
+  outline: 1px solid color-mix(in srgb, var(--haze-chrome-text), transparent 55%);
+  outline-offset: -1px;
+  background: transparent !important;
+}
+
+body:not(.is-mobile) .workspace-sidedock-vault-profile {
+  border-radius: 14px 14px 0 0;
+  color: var(--haze-chrome-muted);
+  background: var(--haze-bottom-surface);
+  border: 0;
+  box-shadow: none;
+  font-family: var(--haze-ui);
+  font-size: var(--font-ui-small);
+  font-weight: 620;
+}
+
+body:not(.is-mobile) .workspace-sidedock-vault-profile:hover {
+  color: var(--haze-chrome-text);
+  background: var(--haze-bottom-surface);
+}
+
+body:not(.is-mobile) .workspace-sidedock-vault-profile .clickable-icon,
+body:not(.is-mobile) .workspace-ribbon .side-dock-settings,
+body:not(.is-mobile) .workspace-ribbon .side-dock-actions {
+  color: var(--haze-chrome-text);
+  background: transparent;
+  box-shadow: none;
+}
+
+.workspace-leaf-content[data-type="markdown"] .view-header {
+  min-height: var(--haze-view-header-height);
+  border-bottom: 1px solid color-mix(in srgb, var(--haze-root-border), transparent 26%);
+  background-color: transparent !important;
+  background-image: none !important;
+  color: var(--haze-chrome-text);
+}
+
+.view-header-title {
+  font-family: var(--haze-mono);
+  font-weight: 650;
+  color: var(--haze-chrome-text);
+  text-shadow: none;
+}
+
+.view-header-title-container,
+.view-header-icon,
+.view-action {
+  color: var(--haze-chrome-text);
+}
+
+/* Navigation */
+.nav-header {
+  padding: 10px 12px 8px;
+}
+
+.nav-files-container {
+  padding: 8px 10px 24px;
+}
+
+.nav-folder-title,
+.nav-file-title {
+  border-radius: 9px;
+  color: var(--text-muted);
+  transition:
+    color var(--haze-fast) var(--haze-ease),
+    background-color var(--haze-fast) var(--haze-ease);
+}
+
+.nav-folder-title:hover,
+.nav-file-title:hover {
+  color: var(--text-normal);
+}
+
+.nav-file-title.is-active {
+  color: var(--text-normal);
+  background: var(--background-modifier-active-hover);
+  box-shadow: none;
+}
+
+.nav-folder-title-content {
+  font-weight: 620;
+  letter-spacing: 0.01em;
+}
+
+.nav-file-title-content {
+  font-weight: 470;
+}
+
+body:not(.is-mobile) .workspace-split.mod-left-split .nav-folder-title,
+body:not(.is-mobile) .workspace-split.mod-left-split .nav-file-title,
+body:not(.is-mobile) .workspace-split.mod-right-split .tree-item-self {
+  color: var(--haze-chrome-text);
+}
+
+body:not(.is-mobile) .workspace-split.mod-left-split .nav-folder-title:hover,
+body:not(.is-mobile) .workspace-split.mod-left-split .nav-file-title:hover,
+body:not(.is-mobile) .workspace-split.mod-left-split .nav-file-title.is-active,
+body:not(.is-mobile) .workspace-split.mod-right-split .tree-item-self:hover {
+  color: var(--text-normal);
+  background: var(--haze-chrome-hover);
+}
+
+/*
+Backlinks and outgoing-links empty states can sit directly over a bright part
+of the wallpaper. Use a solid, mode-aware structural color instead of the
+deliberately faint placeholder color.
+*/
+.embedded-backlinks .tree-item-self,
+.embedded-backlinks .tree-item-inner,
+.embedded-backlinks .tree-item-flair,
+.embedded-backlinks .search-empty-state,
+.embedded-backlinks .pane-empty,
+.workspace-leaf-content[data-type="backlink"] .tree-item-self,
+.workspace-leaf-content[data-type="backlink"] .tree-item-inner,
+.workspace-leaf-content[data-type="backlink"] .tree-item-flair,
+.workspace-leaf-content[data-type="backlink"] .search-empty-state,
+.workspace-leaf-content[data-type="backlink"] .pane-empty,
+.workspace-leaf-content[data-type="outgoing-link"] .tree-item-self,
+.workspace-leaf-content[data-type="outgoing-link"] .tree-item-inner,
+.workspace-leaf-content[data-type="outgoing-link"] .tree-item-flair,
+.workspace-leaf-content[data-type="outgoing-link"] .search-empty-state,
+.workspace-leaf-content[data-type="outgoing-link"] .pane-empty {
+  color: var(--haze-context-text);
+  opacity: 1;
+}
+
+.nav-folder-collapse-indicator {
+  opacity: 0.56;
+}
+
+.nav-folder-children {
+  margin-left: 9px;
+  padding-left: 6px;
+  border-left: 1px solid rgba(var(--mono-rgb-100), 0.07);
+}
+
+body.haze-rainbow-folders .nav-folder-title[data-path="0-辅助"],
+.nav-folder-title[data-haze-folder-color="#eb6f72"] {
+  --haze-folder-color: var(--haze-coral);
+}
+
+body.haze-rainbow-folders .nav-folder-title[data-path="1-Reference"],
+.nav-folder-title[data-haze-folder-color="#d68b52"] {
+  --haze-folder-color: var(--haze-orange);
+}
+
+body.haze-rainbow-folders .nav-folder-title[data-path="2-己见"],
+.nav-folder-title[data-haze-folder-color="#e2b84a"] {
+  --haze-folder-color: var(--haze-yellow);
+}
+
+body.haze-rainbow-folders .nav-folder-title[data-path="3-任务"],
+.nav-folder-title[data-haze-folder-color="#55ad83"] {
+  --haze-folder-color: var(--haze-green);
+}
+
+body.haze-rainbow-folders .nav-folder-title[data-path="4-成果"],
+.nav-folder-title[data-haze-folder-color="#43a9bd"] {
+  --haze-folder-color: var(--haze-cyan);
+}
+
+body.haze-rainbow-folders .nav-folder-title[data-path="Archive"],
+.nav-folder-title[data-haze-folder-color="#4296d8"] {
+  --haze-folder-color: var(--haze-blue);
+}
+
+body.haze-rainbow-folders .nav-folder-title[data-path="Attachment"],
+.nav-folder-title[data-haze-folder-color="#a675d1"] {
+  --haze-folder-color: var(--haze-purple);
+}
+
+body.haze-rainbow-folders .nav-folder-title[data-path="0-辅助"]::before,
+body.haze-rainbow-folders .nav-folder-title[data-path="1-Reference"]::before,
+body.haze-rainbow-folders .nav-folder-title[data-path="2-己见"]::before,
+body.haze-rainbow-folders .nav-folder-title[data-path="3-任务"]::before,
+body.haze-rainbow-folders .nav-folder-title[data-path="4-成果"]::before,
+body.haze-rainbow-folders .nav-folder-title[data-path="Archive"]::before,
+body.haze-rainbow-folders .nav-folder-title[data-path="Attachment"]::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  margin: 0 7px 0 3px;
+  border-radius: 50%;
+  background: var(--haze-folder-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--haze-folder-color), transparent 82%);
+}
+
+/* Editor and reading */
+.markdown-source-view.mod-cm6,
+.markdown-rendered {
+  --font-text: var(--haze-mono);
+  font-family: var(--haze-mono);
+  letter-spacing: 0.018em;
+}
+
+/* Style Settings writes --font-text-size, --line-height-normal and
+   --p-spacing. Apply them directly to both authoring surfaces so the sliders
+   affect the current note instead of only changing inherited defaults. */
+.markdown-reading-view .markdown-rendered,
+.markdown-source-view.mod-cm6 .cm-content,
+.markdown-source-view.mod-cm6 .cm-line {
+  font-size: var(--font-text-size) !important;
+  line-height: var(--line-height-normal) !important;
+}
+
+.markdown-source-view.mod-cm6 .cm-scroller,
+.markdown-reading-view {
+  padding: 8px clamp(12px, 2.4vw, 34px) 48px;
+}
+
+.markdown-source-view.mod-cm6 .cm-contentContainer,
+.markdown-preview-sizer {
+  padding-bottom: 18vh;
+}
+
+.markdown-source-view.mod-cm6 .cm-line {
+  padding-top: 0.14em;
+  padding-bottom: 0.14em;
+}
+
+.markdown-rendered p {
+  text-wrap: pretty;
+  margin-block: 0 var(--p-spacing);
+}
+
+.markdown-rendered h1,
+.markdown-rendered h2,
+.markdown-rendered h3,
+.markdown-rendered h4,
+.HyperMD-header {
+  font-family: var(--haze-mono);
+  letter-spacing: 0.01em;
+}
+
+.inline-title,
+.markdown-rendered h1,
+.markdown-source-view.mod-cm6 .HyperMD-header-1,
+.markdown-source-view.mod-cm6 .cm-header-1 {
+  font-size: var(--haze-title-size) !important;
+}
+
+body.haze-title-left .inline-title,
+body.haze-title-left .markdown-rendered h1,
+body.haze-title-left .markdown-source-view.mod-cm6 .HyperMD-header-1 {
+  text-align: left;
+}
+
+body.haze-title-center .inline-title,
+body.haze-title-center .markdown-rendered h1,
+body.haze-title-center .markdown-source-view.mod-cm6 .HyperMD-header-1 {
+  text-align: center;
+}
+
+body.haze-title-right .inline-title,
+body.haze-title-right .markdown-rendered h1,
+body.haze-title-right .markdown-source-view.mod-cm6 .HyperMD-header-1 {
+  text-align: right;
+}
+
+.markdown-rendered h2 {
+  font-size: 1.38em;
+}
+
+.markdown-rendered h3 {
+  font-size: 1.16em;
+}
+
+.markdown-rendered h2,
+.cm-header-2 {
+  color: var(--h2-color);
+}
+
+.markdown-rendered a,
+.cm-hmd-internal-link,
+.cm-link,
+.external-link {
+  color: var(--text-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color var(--haze-fast) var(--haze-ease);
+}
+
+.markdown-rendered a:hover,
+.cm-hmd-internal-link:hover,
+.cm-link:hover,
+.external-link:hover {
+  color: var(--text-accent-hover);
+}
+
+.footnote-link,
+.footnote-backref,
+.cm-hmd-footnote {
+  color: var(--text-accent);
+  font-family: var(--haze-mono);
+  font-weight: 650;
+}
+
+.markdown-rendered img:not(.emoji),
+.markdown-source-view img:not(.emoji) {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: clamp(8px, 1.6vw, 18px);
+  border: 1px solid rgba(var(--mono-rgb-100), 0.07);
+  border-radius: 0;
+  background: #faf9f7;
+  box-shadow: var(--haze-card-shadow);
+  transition:
+    transform var(--haze-normal) var(--haze-ease),
+    box-shadow var(--haze-normal) var(--haze-ease);
+}
+
+.markdown-rendered img:not(.emoji):hover,
+.markdown-source-view img:not(.emoji):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 42px rgba(var(--mono-rgb-100), 0.18);
+}
+
+.image-embed {
+  line-height: 0;
+}
+
+blockquote {
+  border-radius: 0 12px 12px 0;
+  background: rgba(var(--mono-rgb-100), 0.035);
+  padding: 0.8em 1.1em;
+}
+
+code,
+pre,
+.cm-inline-code {
+  font-family: var(--haze-mono);
+}
+
+pre {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(var(--mono-rgb-100), 0.06);
+}
+
+.markdown-rendered table {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 12px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.markdown-rendered th {
+  background: rgba(var(--mono-rgb-100), 0.055);
+  color: var(--text-normal);
+}
+
+.markdown-rendered th,
+.markdown-rendered td {
+  padding: 9px 12px;
+  border-color: var(--background-modifier-border);
+}
+
+.callout {
+  border: 1px solid rgba(var(--callout-color), 0.18);
+  border-radius: 14px;
+  background: rgba(var(--callout-color), 0.075);
+  box-shadow: 0 10px 24px rgba(var(--mono-rgb-100), 0.05);
+}
+
+.callout-title {
+  font-family: var(--haze-ui);
+  font-weight: 650;
+}
+
+.markdown-embed,
+.file-embed {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 14px;
+  background: rgba(var(--mono-rgb-0), 0.08);
+  box-shadow: 0 8px 22px rgba(var(--mono-rgb-100), 0.05);
+}
+
+.metadata-container {
+  margin-bottom: 1.55em;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Properties deliberately remain a quiet inline list. No card, field outline,
+   focus ring, or hover block is introduced around the key/value pair. */
+.metadata-container .metadata-properties,
+.metadata-container .metadata-property,
+.metadata-container .metadata-property:hover,
+.metadata-container .metadata-property.has-focus,
+.metadata-container .metadata-property:focus-within,
+.metadata-container .metadata-property-key,
+.metadata-container .metadata-property-value,
+.metadata-container .metadata-add-button {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.metadata-container .metadata-property-value .metadata-input-text,
+.metadata-container .metadata-property-value .metadata-input-number,
+.metadata-container .metadata-property-value .multi-select-container,
+.metadata-container .metadata-property-value input,
+.metadata-container input.metadata-property-key-input {
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.metadata-container .metadata-property-value .metadata-input-text:hover,
+.metadata-container .metadata-property-value .metadata-input-number:hover,
+.metadata-container .metadata-property-value .multi-select-container:hover,
+.metadata-container .metadata-property-value .metadata-input-text:focus,
+.metadata-container .metadata-property-value .metadata-input-number:focus,
+.metadata-container .metadata-property-value .multi-select-container:focus,
+.metadata-container .metadata-property-value .multi-select-container:focus-within {
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tag {
+  border: 1px solid color-mix(in srgb, var(--text-accent), transparent 74%);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text-accent), transparent 90%);
+}
+
+/* Inputs, menus, dialogs */
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+textarea,
+.dropdown {
+  border: 1px solid var(--background-modifier-border);
+  box-shadow: 0 1px 0 rgba(var(--mono-rgb-0), 0.22) inset;
+}
+
+/* Settings switches are drawn from the real checkbox state. Obsidian's
+   container state can be visually stale after a settings redraw, which made
+   an unchecked control look like an amber hollow switch. */
+.checkbox-container {
+  width: 38px !important;
+  height: 20px !important;
+  overflow: visible !important;
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+.checkbox-container::before,
+.checkbox-container::after {
+  display: none !important;
+}
+
+.checkbox-container input[type="checkbox"] {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 38px !important;
+  height: 20px !important;
+  margin: 0 !important;
+  opacity: 1 !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  cursor: pointer;
+  background: color-mix(in srgb, var(--text-muted), transparent 64%) !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  transition:
+    background-color 140ms var(--haze-ease),
+    background 140ms var(--haze-ease);
+}
+
+.checkbox-container input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fffdfa;
+  box-shadow: none;
+  transform: translateX(0);
+  transition: transform 140ms var(--haze-ease);
+}
+
+.checkbox-container input[type="checkbox"]:hover {
+  background: color-mix(in srgb, var(--text-muted), transparent 52%) !important;
+}
+
+.checkbox-container input[type="checkbox"]:checked {
+  background: var(--interactive-accent) !important;
+}
+
+.checkbox-container input[type="checkbox"]:checked:hover {
+  background: var(--interactive-accent-hover) !important;
+}
+
+.checkbox-container input[type="checkbox"]:checked::before {
+  transform: translateX(18px);
+}
+
+.checkbox-container input[type="checkbox"]:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--interactive-accent), transparent 48%) !important;
+  outline-offset: 2px;
+}
+
+.modal,
+.menu,
+.suggestion-container,
+.popover,
+.prompt {
+  border: 1px solid var(--background-modifier-border);
+  background: color-mix(in srgb, var(--background-secondary-alt), transparent 4%);
+  box-shadow: var(--haze-panel-shadow);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+body.theme-light .modal {
+  background: rgba(246, 243, 240, 0.96);
+}
+
+body.theme-dark .modal {
+  background: rgba(37, 38, 40, 0.94);
+}
+
+body.theme-light .modal.mod-settings .setting-item-name,
+body.theme-light .modal.mod-settings .setting-item-heading,
+body.theme-light .modal.mod-settings .style-settings-heading,
+body.theme-light .modal.mod-settings h1,
+body.theme-light .modal.mod-settings h2,
+body.theme-light .modal.mod-settings h3,
+body.theme-light .modal.mod-settings label {
+  color: #302d2b !important;
+  opacity: 1;
+}
+
+body.theme-light .modal.mod-settings .setting-item-description,
+body.theme-light .modal.mod-settings .setting-item-info,
+body.theme-light .modal.mod-settings .style-settings-description {
+  color: #68615d !important;
+  opacity: 1;
+}
+
+body.theme-light .modal.mod-settings .setting-item-control,
+body.theme-light .modal.mod-settings .setting-item-control input,
+body.theme-light .modal.mod-settings .setting-item-control select,
+body.theme-light .modal.mod-settings .setting-item-control option,
+body.theme-light .modal.mod-settings .setting-item-control output,
+body.theme-light .modal.mod-settings .setting-item-control .dropdown,
+body.theme-light .modal.mod-settings .setting-item-control .value,
+body.theme-light .modal.mod-settings .setting-item-control .slider-value {
+  color: #302d2b !important;
+  -webkit-text-fill-color: #302d2b;
+  opacity: 1;
+}
+
+body.theme-light .tooltip {
+  color: #302d2b !important;
+  -webkit-text-fill-color: #302d2b;
+  background: rgba(251, 248, 244, 0.98);
+  border: 1px solid rgba(74, 66, 61, 0.14);
+  box-shadow: 0 8px 24px rgba(57, 48, 42, 0.14);
+}
+
+body.theme-light .tooltip .tooltip-arrow {
+  color: rgba(251, 248, 244, 0.98);
+}
+
+body.theme-light .tooltip,
+body.theme-light .tooltip * {
+  text-shadow: none;
+}
+
+.menu {
+  border-radius: 13px;
+}
+
+.menu-item,
+.suggestion-item {
+  border-radius: 8px;
+  transition:
+    color var(--haze-fast) var(--haze-ease),
+    background-color var(--haze-fast) var(--haze-ease);
+}
+
+button,
+.mod-cta {
+  font-family: var(--haze-ui);
+  font-weight: 600;
+  transition:
+    transform var(--haze-fast) var(--haze-ease),
+    background-color var(--haze-fast) var(--haze-ease),
+    box-shadow var(--haze-fast) var(--haze-ease);
+}
+
+button:active,
+.mod-cta:active {
+  transform: translateY(0) scale(0.985);
+}
+
+/* Status and scrollbars */
+.status-bar {
+  margin: 0;
+  padding: 4px 12px;
+  border: 0;
+  border-radius: 14px 14px 0 0;
+  color: var(--haze-chrome-muted);
+  background: var(--haze-bottom-surface);
+  box-shadow: none;
+  opacity: 1;
+  transform: none;
+  font-family: var(--haze-ui);
+  font-size: var(--font-ui-small);
+  font-weight: 580;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: color var(--haze-fast) var(--haze-ease);
+}
+
+.status-bar:hover {
+  color: var(--haze-chrome-text);
+  background: var(--haze-bottom-surface);
+}
+
+.status-bar-item,
+.status-bar-item .clickable-icon {
+  color: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+  background-color: rgba(var(--mono-rgb-100), 0.19);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(var(--mono-rgb-100), 0.3);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Canvas and graph remain readable without heavy overrides. */
+.canvas-node-container {
+  border-radius: 14px;
+  box-shadow: var(--haze-card-shadow);
+}
+
+.graph-controls {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 13px;
+  background: var(--background-secondary);
+  backdrop-filter: none;
+}
+
+/* Accessibility: motion is decorative and fully removable. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --haze-fast: 0ms;
+    --haze-normal: 0ms;
+    --haze-slow: 0ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto;
+    transition-duration: 0ms;
+    animation-duration: 0ms;
+  }
+}
+
+body.reduce-motion {
+  --haze-fast: 0ms;
+  --haze-normal: 0ms;
+  --haze-slow: 0ms;
+}
+
+/* Mobile is out of scope; keep a conservative readable fallback. */
+body.is-mobile .workspace,
+body.is-mobile .workspace-split {
+  background: var(--background-primary);
+}
