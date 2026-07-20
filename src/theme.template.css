@@ -1,5 +1,5 @@
 /*
-Haze Note 0.1.16
+Haze Note 0.1.19
 Personal macOS-first Obsidian theme by jn.
 No remote assets. No sound effects.
 */
@@ -883,13 +883,90 @@ body:not(.is-mobile) .workspace-leaf-content .view-header {
 
 .workspace-leaf-content[data-type="search"] .search-input-container input {
   box-sizing: border-box;
-  width: 100%;
+  display: block;
+  flex: 1 1 auto;
+  width: auto;
   min-width: 0;
   height: var(--input-height);
   color: var(--text-normal);
   background: var(--background-primary-alt);
   border-color: var(--background-modifier-border);
   box-shadow: none;
+}
+
+/* In current Obsidian builds, the case-sensitive toggle lives in the same
+   search-input container as the field. A block-width field therefore forces
+   the toggle onto a second row. Let the field consume only the remaining
+   inline space and keep every control vertically centred. */
+.workspace-leaf-content[data-type="search"] .search-input-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 4px;
+  min-width: 0;
+  overflow: visible;
+}
+
+.workspace-leaf-content[data-type="search"] .search-input-container > :not(input):not(.search-input-clear-button) {
+  flex: 0 0 auto;
+  align-self: center;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* The remaining search controls are rendered in Obsidian's independent
+   nav-buttons group (not inside the input container). Keep that group on the
+   input row as well, so the Aa case toggle cannot drop below the field. */
+.workspace-leaf-content[data-type="search"] .nav-buttons-container {
+  display: flex !important;
+  align-items: center;
+  flex-wrap: nowrap !important;
+  gap: 2px;
+  min-width: 0;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap;
+}
+
+.workspace-leaf-content[data-type="search"] .nav-buttons-container .nav-action-button {
+  flex: 0 0 auto;
+  margin: 0 !important;
+}
+
+/* Obsidian 1.12 renders the two search actions as separate siblings. Anchor
+   them to the input row by their built-in accessible names; include English
+   names so this stays correct for an English application UI as well. */
+.workspace-leaf-content[data-type="search"] .view-content {
+  position: relative;
+}
+
+.workspace-leaf-content[data-type="search"] .search-input-container {
+  box-sizing: border-box;
+  width: calc(100% - 84px) !important;
+  margin: 8px 12px 6px !important;
+}
+
+.workspace-leaf-content[data-type="search"] [aria-label="区分大小写"],
+.workspace-leaf-content[data-type="search"] [aria-label="Match case"] {
+  position: absolute !important;
+  top: 8px;
+  right: 46px;
+  z-index: 2;
+  width: var(--input-height);
+  height: var(--input-height);
+  margin: 0 !important;
+}
+
+.workspace-leaf-content[data-type="search"] [aria-label="搜索设置"],
+.workspace-leaf-content[data-type="search"] [aria-label="Search settings"] {
+  position: absolute !important;
+  top: 8px;
+  right: 10px;
+  z-index: 2;
+  width: var(--input-height);
+  height: var(--input-height);
+  margin: 0 !important;
 }
 
 .nav-files-container {
