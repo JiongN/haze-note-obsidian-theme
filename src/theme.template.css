@@ -1,5 +1,5 @@
 /*
-Haze Note 0.1.15
+Haze Note 0.1.16
 Personal macOS-first Obsidian theme by jn.
 No remote assets. No sound effects.
 */
@@ -457,8 +457,8 @@ body:not(.is-mobile) .workspace-split.mod-root {
     linear-gradient(
       to bottom,
       var(--haze-shell-surface) 0,
-      var(--haze-shell-surface) calc(var(--haze-topbar-height) + var(--haze-view-header-height)),
-      transparent calc(var(--haze-topbar-height) + var(--haze-view-header-height))
+      var(--haze-shell-surface) var(--haze-topbar-height),
+      transparent var(--haze-topbar-height)
     ),
     linear-gradient(
       to top,
@@ -815,10 +815,15 @@ body:not(.is-mobile) .workspace-ribbon .side-dock-actions {
   box-shadow: none;
 }
 
-.workspace-leaf-content[data-type="markdown"] .view-header {
+/*
+Every leaf paints its own real header height. The root only paints the tab row;
+otherwise an empty/new-tab leaf (whose header is shorter than a markdown
+header) leaves a visible surplus strip below the title.
+*/
+body:not(.is-mobile) .workspace-leaf-content .view-header {
   min-height: var(--haze-view-header-height);
   border-bottom: 1px solid color-mix(in srgb, var(--haze-root-border), transparent 26%);
-  background-color: transparent !important;
+  background-color: var(--haze-shell-surface) !important;
   background-image: none !important;
   color: var(--haze-chrome-text);
 }
@@ -839,6 +844,52 @@ body:not(.is-mobile) .workspace-ribbon .side-dock-actions {
 /* Navigation */
 .nav-header {
   padding: 10px 12px 8px;
+}
+
+/* Keep the search field, case toggle and filter actions on one stable row.
+   Search uses the same nav-header primitives as a few other panes, so this is
+   deliberately scoped to the search leaf instead of changing every sidebar. */
+.workspace-leaf-content[data-type="search"] .nav-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 4px;
+  min-width: 0;
+  padding: 8px 12px 4px;
+}
+
+.workspace-leaf-content[data-type="search"] .nav-header .search-input-container {
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+  margin: 0;
+}
+
+.workspace-leaf-content[data-type="search"] .nav-header .nav-buttons-container,
+.workspace-leaf-content[data-type="search"] .nav-header .nav-action-button,
+.workspace-leaf-content[data-type="search"] .nav-header .clickable-icon {
+  flex: 0 0 auto;
+  min-width: 0;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.workspace-leaf-content[data-type="search"] .nav-header ~ .search-input-container {
+  box-sizing: border-box;
+  width: calc(100% - 24px);
+  min-width: 0;
+  margin: 4px 12px 8px;
+}
+
+.workspace-leaf-content[data-type="search"] .search-input-container input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: var(--input-height);
+  color: var(--text-normal);
+  background: var(--background-primary-alt);
+  border-color: var(--background-modifier-border);
+  box-shadow: none;
 }
 
 .nav-files-container {
