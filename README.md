@@ -2,7 +2,7 @@
 
 Haze Note is a macOS-first Obsidian theme with a soft neutral glass frame, local 4K wallpapers, a focused reading surface, and Chinese Style Settings labels.
 
-![Haze Note preview](screenshots/screenshot.jpeg)
+![Haze Note preview](screenshots/screenshot.png)
 
 ## Highlights
 
