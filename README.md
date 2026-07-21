@@ -1,12 +1,12 @@
 # Haze Note
 
-Haze Note is a macOS-first Obsidian theme with a soft neutral glass frame, local 4K wallpapers, a focused reading surface, and Chinese Style Settings labels.
+Haze Note is a macOS-first Obsidian theme with a soft neutral glass frame, four embedded 4K wallpapers, a focused reading surface, and Chinese Style Settings labels.
 
 ![Haze Note preview](screenshots/screenshot.png)
 
 ## Highlights
 
-- Six original 4K wallpapers embedded directly in `theme.css`.
+- Four original 4K WebP wallpapers embedded directly in `theme.css`: desert sunset, blue-violet dusk, warm paper, and graphite.
 - Neutral light and graphite dark modes, with one adjustable glass-opacity control.
 - A continuous top frame, rounded bottom utility areas, and readable status/backlink text at low opacity.
 - SF Mono / Menlo typography with `LXGW WenKai Mono` as the Chinese fallback.
@@ -20,13 +20,13 @@ Haze Note is a macOS-first Obsidian theme with a soft neutral glass frame, local
 
 ## Development
 
-The distributable `theme.css` embeds the six wallpapers. To rebuild it after changing `src/theme.template.css` or an image:
+The distributable `theme.css` embeds four optimized WebP wallpapers and enforces a 700 KB size ceiling. Install `cwebp`, then rebuild after changing `src/theme.template.css` or an image:
 
 ```bash
 node scripts/build-theme.mjs
 ```
 
-The source wallpapers are in `assets/wallpapers/`.
+The original 4K source wallpapers are in `assets/wallpapers/`. Haze Note also works without any companion plugin; the optional local Haze Note Folders plugin can override the selected preset with an image stored inside a vault.
 
 ## Scope
 

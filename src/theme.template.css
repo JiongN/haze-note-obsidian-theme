@@ -1,5 +1,5 @@
 /*
-Haze Note 0.1.22
+Haze Note 0.1.23
 Personal macOS-first Obsidian theme by jn.
 No remote assets. No sound effects.
 */
@@ -17,7 +17,7 @@ settings:
   -
     id: haze-wallpaper
     title: 内置壁纸
-    description: 六张壁纸均嵌入主题文件，不依赖网络、插件或 macOS 桌面透明。
+    description: 四张原创 4K 壁纸以 WebP 嵌入主题，不依赖网络。如需自定义图片，可在可选的 Haze Note 文件夹插件中选择库内图片。
     type: class-select
     allowEmpty: false
     default: haze-wallpaper-desert
@@ -26,14 +26,8 @@ settings:
         label: 沙漠黄昏
         value: haze-wallpaper-desert
       -
-        label: 紫色极光
-        value: haze-wallpaper-purple
-      -
         label: 蓝紫暮色
         value: haze-wallpaper-blue
-      -
-        label: 薰衣草薄雾
-        value: haze-wallpaper-lavender
       -
         label: 暖纸中性色
         value: haze-wallpaper-paper
@@ -159,10 +153,11 @@ settings:
   --haze-blue: #4296d8;
   --haze-purple: #a675d1;
   --haze-pink: #d77ba4;
+  /* The optional Haze Note Folders plugin can override this variable with
+     any supported image in the vault. Removing the override restores the
+     current Style Settings selection. */
   --haze-wallpaper-desert-image: url("__HAZE_WALLPAPER_DESERT__");
-  --haze-wallpaper-purple-image: url("__HAZE_WALLPAPER_PURPLE__");
   --haze-wallpaper-blue-image: url("__HAZE_WALLPAPER_BLUE__");
-  --haze-wallpaper-lavender-image: url("__HAZE_WALLPAPER_LAVENDER__");
   --haze-wallpaper-paper-image: url("__HAZE_WALLPAPER_PAPER__");
   --haze-wallpaper-graphite-image: url("__HAZE_WALLPAPER_GRAPHITE__");
   --haze-wallpaper-image: var(--haze-wallpaper-desert-image);
@@ -172,16 +167,8 @@ body.haze-wallpaper-desert {
   --haze-wallpaper-image: var(--haze-wallpaper-desert-image);
 }
 
-body.haze-wallpaper-purple {
-  --haze-wallpaper-image: var(--haze-wallpaper-purple-image);
-}
-
 body.haze-wallpaper-blue {
   --haze-wallpaper-image: var(--haze-wallpaper-blue-image);
-}
-
-body.haze-wallpaper-lavender {
-  --haze-wallpaper-image: var(--haze-wallpaper-lavender-image);
 }
 
 body.haze-wallpaper-paper {
