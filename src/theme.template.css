@@ -1,5 +1,5 @@
 /*
-Haze Note 0.1.23
+Haze Note 0.1.24
 Personal macOS-first Obsidian theme by jn.
 No remote assets. No sound effects.
 */
@@ -542,16 +542,16 @@ body.mod-macos .titlebar-button-container,
 body.mod-macos .titlebar-button-container.mod-left,
 body.mod-macos .titlebar-button-container.mod-right {
   color: var(--haze-chrome-muted);
-  background-color: transparent !important;
-  background-image: none !important;
+  background-color: transparent;
+  background-image: none;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
 
 body:not(.is-mobile) .sidebar-toggle-button,
 body:not(.is-mobile) .sidebar-toggle-button .clickable-icon {
-  background: transparent !important;
-  box-shadow: none !important;
+  background: transparent;
+  box-shadow: none;
 }
 
 body:not(.is-mobile) .sidebar-toggle-button .clickable-icon:hover {
@@ -561,9 +561,9 @@ body:not(.is-mobile) .sidebar-toggle-button .clickable-icon:hover {
 
 body.mod-macos.is-hidden-frameless:not(.is-popout-window):not(.is-mobile) .sidebar-toggle-button.mod-right {
   color: var(--haze-chrome-muted);
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
@@ -581,16 +581,16 @@ body.mod-macos.is-hidden-frameless:not(.is-popout-window):not(.is-mobile) .sideb
 .workspace-tab-header-container {
   min-height: var(--haze-topbar-height);
   border-bottom: 1px solid var(--haze-root-border);
-  background-color: transparent !important;
-  background-image: none !important;
+  background-color: transparent;
+  background-image: none;
   color: var(--haze-chrome-text);
 }
 
 .workspace-split.mod-left-split .workspace-tab-header-container,
 .workspace-split.mod-right-split .workspace-tab-header-container {
   border-bottom-color: var(--haze-side-border);
-  background-color: transparent !important;
-  background-image: none !important;
+  background-color: transparent;
+  background-image: none;
   color: var(--haze-chrome-text);
 }
 
@@ -598,9 +598,9 @@ body.mod-macos.is-hidden-frameless:not(.is-popout-window):not(.is-mobile) .sideb
 .workspace-tab-header-spacer,
 .workspace-tab-header-tab-list,
 .workspace-tab-header-new-tab {
-  background-color: transparent !important;
-  background-image: none !important;
-  box-shadow: none !important;
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
 }
 
 body.mod-macos .workspace-tabs.mod-top-left-space .workspace-tab-header-container {
@@ -626,35 +626,35 @@ body.mod-macos .workspace-tabs.mod-top-left-space .workspace-tab-header-containe
 
 .workspace-tab-header-inner {
   width: 100%;
-  border: 0 !important;
+  border: 0;
   border-radius: 0;
-  background-color: transparent !important;
-  background-image: none !important;
-  box-shadow: none !important;
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
 }
 
 .workspace-tab-header-inner::before,
 .workspace-tab-header-inner::after {
-  display: none !important;
-  content: none !important;
+  display: none;
+  content: none;
 }
 
 .workspace-tab-header:hover {
   color: var(--haze-chrome-text);
-  background: var(--haze-chrome-hover) !important;
+  background: var(--haze-chrome-hover);
 }
 
 .workspace-tab-header.is-active,
 .workspace-tab-header.is-active:hover {
   color: var(--haze-chrome-text);
-  background: transparent !important;
-  box-shadow: none !important;
+  background: transparent;
+  box-shadow: none;
 }
 
 .workspace-tab-header.is-active .workspace-tab-header-inner {
-  border: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .workspace-split.mod-left-split .workspace-tab-header,
@@ -743,9 +743,9 @@ body:not(.is-mobile) .workspace-ribbon .clickable-icon[aria-pressed="true"],
 body:not(.is-mobile) .workspace-ribbon .side-dock-ribbon-action:active,
 body:not(.is-mobile) .workspace-ribbon .clickable-icon:active,
 body:not(.is-mobile) .workspace-ribbon .clickable-icon.has-active-menu {
-  color: var(--haze-chrome-text) !important;
-  background: transparent !important;
-  box-shadow: none !important;
+  color: var(--haze-chrome-text);
+  background: transparent;
+  box-shadow: none;
 }
 
 body:not(.is-mobile) .sidebar-toggle-button.is-active,
@@ -756,17 +756,17 @@ body:not(.is-mobile) .sidebar-toggle-button .clickable-icon.has-active-menu,
 body:not(.is-mobile) .sidebar-toggle-button.is-active .clickable-icon,
 body:not(.is-mobile) .sidebar-toggle-button[aria-pressed="true"] .clickable-icon {
   color: var(--haze-chrome-text);
-  background: transparent !important;
-  box-shadow: none !important;
+  background: transparent;
+  box-shadow: none;
 }
 
 body:not(.is-mobile) .workspace.is-left-sidedock-open .sidebar-toggle-button.mod-left,
 body:not(.is-mobile) .workspace.is-left-sidedock-open .sidebar-toggle-button.mod-left .clickable-icon,
 body:not(.is-mobile) .workspace.is-right-sidedock-open .sidebar-toggle-button.mod-right,
 body:not(.is-mobile) .workspace.is-right-sidedock-open .sidebar-toggle-button.mod-right .clickable-icon {
-  color: var(--haze-chrome-text) !important;
-  background: transparent !important;
-  box-shadow: none !important;
+  color: var(--haze-chrome-text);
+  background: transparent;
+  box-shadow: none;
 }
 
 body:not(.is-mobile) .workspace-ribbon .clickable-icon:focus-visible,
@@ -775,7 +775,7 @@ body:not(.is-mobile) .workspace-split.mod-left-split .clickable-icon:focus-visib
 body:not(.is-mobile) .workspace-split.mod-right-split .clickable-icon:focus-visible {
   outline: 1px solid color-mix(in srgb, var(--haze-chrome-text), transparent 55%);
   outline-offset: -1px;
-  background: transparent !important;
+  background: transparent;
 }
 
 body:not(.is-mobile) .workspace-sidedock-vault-profile {
@@ -810,8 +810,8 @@ header) leaves a visible surplus strip below the title.
 body:not(.is-mobile) .workspace-leaf-content .view-header {
   min-height: var(--haze-view-header-height);
   border-bottom: 1px solid color-mix(in srgb, var(--haze-root-border), transparent 26%);
-  background-color: var(--haze-shell-surface) !important;
-  background-image: none !important;
+  background-color: var(--haze-shell-surface);
+  background-image: none;
   color: var(--haze-chrome-text);
 }
 
@@ -905,20 +905,20 @@ body:not(.is-mobile) .workspace-leaf-content .view-header {
    nav-buttons group (not inside the input container). Keep that group on the
    input row as well, so the Aa case toggle cannot drop below the field. */
 .workspace-leaf-content[data-type="search"] .nav-buttons-container {
-  display: flex !important;
+  display: flex;
   align-items: center;
-  flex-wrap: nowrap !important;
+  flex-wrap: nowrap;
   gap: 2px;
   min-width: 0;
-  width: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  width: auto;
+  margin: 0;
+  padding: 0;
   white-space: nowrap;
 }
 
 .workspace-leaf-content[data-type="search"] .nav-buttons-container .nav-action-button {
   flex: 0 0 auto;
-  margin: 0 !important;
+  margin: 0;
 }
 
 /* Obsidian 1.12 renders the two search actions as separate siblings. Anchor
@@ -930,62 +930,62 @@ body:not(.is-mobile) .workspace-leaf-content .view-header {
 
 .workspace-leaf-content[data-type="search"] .search-input-container {
   box-sizing: border-box;
-  width: calc(100% - 84px) !important;
-  margin: 8px 12px 6px !important;
+  width: calc(100% - 84px);
+  margin: 8px 12px 6px;
 }
 
 .workspace-leaf-content[data-type="search"] [aria-label="区分大小写"],
 .workspace-leaf-content[data-type="search"] [aria-label="Match case"] {
-  position: absolute !important;
+  position: absolute;
   top: 8px;
   right: 46px;
   z-index: 2;
   width: var(--input-height);
   height: var(--input-height);
-  margin: 0 !important;
+  margin: 0;
 }
 
 .workspace-leaf-content[data-type="search"] [aria-label="搜索设置"],
 .workspace-leaf-content[data-type="search"] [aria-label="Search settings"] {
-  position: absolute !important;
+  position: absolute;
   top: 8px;
   right: 10px;
   z-index: 2;
   width: var(--input-height);
   height: var(--input-height);
-  margin: 0 !important;
+  margin: 0;
 }
 
 /* Obsidian 1.12 Chinese UI renders the Aa toggle as an unlabeled sibling of
    the search field. Attribute selectors cannot reach it, so reserve space in
    the input itself and anchor that sibling within the same input row. */
 .workspace-leaf-content[data-type="search"] .search-input-container {
-  position: relative !important;
-  display: block !important;
-  min-height: var(--input-height) !important;
+  position: relative;
+  display: block;
+  min-height: var(--input-height);
 }
 
 .workspace-leaf-content[data-type="search"] .search-input-container > input {
-  display: block !important;
-  width: 100% !important;
-  min-width: 0 !important;
-  padding-right: calc(var(--input-height) * 2 + 12px) !important;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding-right: calc(var(--input-height) * 2 + 12px);
 }
 
 .workspace-leaf-content[data-type="search"] .search-input-container > .search-input-clear-button {
-  position: absolute !important;
-  top: 50% !important;
-  right: 6px !important;
-  margin: 0 !important;
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  margin: 0;
   transform: translateY(-50%);
 }
 
 .workspace-leaf-content[data-type="search"] .search-input-container > :not(input):not(.search-input-clear-button) {
-  position: absolute !important;
-  top: 50% !important;
-  right: calc(var(--input-height) + 8px) !important;
+  position: absolute;
+  top: 50%;
+  right: calc(var(--input-height) + 8px);
   z-index: 2;
-  margin: 0 !important;
+  margin: 0;
   transform: translateY(-50%);
 }
 
@@ -1136,8 +1136,8 @@ body.haze-rainbow-folders .nav-folder-title[data-path="Attachment"]::before {
 .markdown-reading-view .markdown-rendered,
 .markdown-source-view.mod-cm6 .cm-content,
 .markdown-source-view.mod-cm6 .cm-line {
-  font-size: var(--font-text-size) !important;
-  line-height: var(--line-height-normal) !important;
+  font-size: var(--font-text-size);
+  line-height: var(--line-height-normal);
 }
 
 .markdown-source-view.mod-cm6 .cm-scroller,
@@ -1173,7 +1173,7 @@ body.haze-rainbow-folders .nav-folder-title[data-path="Attachment"]::before {
 .markdown-rendered h1,
 .markdown-source-view.mod-cm6 .HyperMD-header-1,
 .markdown-source-view.mod-cm6 .cm-header-1 {
-  font-size: var(--haze-title-size) !important;
+  font-size: var(--haze-title-size);
 }
 
 body.haze-title-left .inline-title,
@@ -1212,7 +1212,6 @@ body.haze-title-right .markdown-source-view.mod-cm6 .HyperMD-header-1 {
 .cm-link,
 .external-link {
   color: var(--text-accent);
-  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   transition: color var(--haze-fast) var(--haze-ease);
 }
@@ -1344,11 +1343,11 @@ pre {
 .metadata-container .metadata-property-value .multi-select-container,
 .metadata-container .metadata-property-value input,
 .metadata-container input.metadata-property-key-input {
-  border: 0 !important;
-  border-radius: 0 !important;
-  outline: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .metadata-container .metadata-property-value .metadata-input-text:hover,
@@ -1358,10 +1357,10 @@ pre {
 .metadata-container .metadata-property-value .metadata-input-number:focus,
 .metadata-container .metadata-property-value .multi-select-container:focus,
 .metadata-container .metadata-property-value .multi-select-container:focus-within {
-  border: 0 !important;
-  outline: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .tag {
@@ -1432,14 +1431,14 @@ body.theme-light .modal.mod-settings h1,
 body.theme-light .modal.mod-settings h2,
 body.theme-light .modal.mod-settings h3,
 body.theme-light .modal.mod-settings label {
-  color: #302d2b !important;
+  color: #302d2b;
   opacity: 1;
 }
 
 body.theme-light .modal.mod-settings .setting-item-description,
 body.theme-light .modal.mod-settings .setting-item-info,
 body.theme-light .modal.mod-settings .style-settings-description {
-  color: #68615d !important;
+  color: #68615d;
   opacity: 1;
 }
 
@@ -1451,13 +1450,13 @@ body.theme-light .modal.mod-settings .setting-item-control output,
 body.theme-light .modal.mod-settings .setting-item-control .dropdown,
 body.theme-light .modal.mod-settings .setting-item-control .value,
 body.theme-light .modal.mod-settings .setting-item-control .slider-value {
-  color: #302d2b !important;
+  color: #302d2b;
   -webkit-text-fill-color: #302d2b;
   opacity: 1;
 }
 
 body.theme-light .tooltip {
-  color: #302d2b !important;
+  color: #302d2b;
   -webkit-text-fill-color: #302d2b;
   background: rgba(251, 248, 244, 0.98);
   border: 1px solid rgba(74, 66, 61, 0.14);
