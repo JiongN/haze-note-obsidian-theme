@@ -1,5 +1,5 @@
 /*
-Haze Note 0.1.20
+Haze Note 0.1.21
 Personal macOS-first Obsidian theme by jn.
 No remote assets. No sound effects.
 */
@@ -293,6 +293,9 @@ body,
   --haze-card-shadow: 0 14px 32px rgba(7, 7, 12, 0.22);
   --haze-main-surface: rgba(36, 37, 39, var(--haze-surface-opacity));
   --haze-side-surface: rgba(30, 31, 33, var(--haze-surface-opacity));
+  --haze-notice-background: rgba(37, 38, 40, 0.97);
+  --haze-notice-text: #eee9ec;
+  --haze-notice-muted: #bbb4ba;
 }
 
 .theme-light {
@@ -355,6 +358,9 @@ body,
   --haze-card-shadow: 0 14px 32px rgba(56, 47, 42, 0.12);
   --haze-main-surface: rgba(241, 240, 238, var(--haze-surface-opacity));
   --haze-side-surface: rgba(225, 225, 223, var(--haze-surface-opacity));
+  --haze-notice-background: rgba(247, 244, 241, 0.97);
+  --haze-notice-text: #302d2b;
+  --haze-notice-muted: #6f6965;
 }
 
 /* Workspace underlay and one continuous glass shell. */
@@ -1534,6 +1540,41 @@ body.theme-light .tooltip .tooltip-arrow {
 body.theme-light .tooltip,
 body.theme-light .tooltip * {
   text-shadow: none;
+}
+
+/* Notices sit above the workspace and may be emitted by third-party plugins.
+   Keep their surface and text paired so a light card cannot inherit white
+   accent text from the plugin that created it. */
+.notice {
+  color: var(--haze-notice-text);
+  background: var(--haze-notice-background);
+  border: 1px solid var(--background-modifier-border);
+  box-shadow: 0 12px 30px rgba(var(--mono-rgb-100), 0.16);
+  text-shadow: none;
+}
+
+.notice .notice-message,
+.notice .notice-title,
+.notice p,
+.notice strong,
+.notice em,
+.notice code,
+.notice button,
+.notice .clickable-icon {
+  color: inherit;
+  -webkit-text-fill-color: currentColor;
+  text-shadow: none;
+  opacity: 1;
+}
+
+.notice a {
+  color: var(--text-accent);
+  -webkit-text-fill-color: currentColor;
+}
+
+.notice .notice-close-button,
+.notice .notice-progress {
+  color: var(--haze-notice-muted);
 }
 
 .menu {
