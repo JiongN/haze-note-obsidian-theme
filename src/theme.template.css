@@ -1,5 +1,5 @@
 /*
-Haze Note 0.1.21
+Haze Note 0.1.22
 Personal macOS-first Obsidian theme by jn.
 No remote assets. No sound effects.
 */
@@ -136,6 +136,10 @@ settings:
 :root {
   --haze-surface-opacity: 0.72;
   --haze-title-size: 30px;
+  --font-text-size: 17px;
+  --line-height-normal: 1.82;
+  --file-line-width: 820px;
+  --p-spacing: 1.32em;
   --haze-view-header-height: 46px;
   --haze-bottombar-height: 34px;
   --haze-window-radius: 18px;
@@ -194,9 +198,6 @@ body,
   --font-interface-theme: var(--haze-ui);
   --font-text-theme: var(--haze-mono);
   --font-monospace-theme: var(--haze-mono);
-  --font-text-size: 17px;
-  --line-height-normal: 1.82;
-  --file-line-width: 820px;
   --radius-s: 7px;
   --radius-m: 12px;
   --radius-l: 18px;
@@ -214,7 +215,6 @@ body,
   --icon-opacity-hover: 1;
   --bold-weight: 700;
   --heading-spacing: 1.8em;
-  --p-spacing: 1.32em;
   --link-decoration: none;
   --link-decoration-hover: none;
   --embed-border-start: 0;
@@ -235,9 +235,6 @@ body,
 
 .theme-dark {
   color-scheme: dark;
-  --accent-h: 36;
-  --accent-s: 47%;
-  --accent-l: 58%;
   --color-base-00: #232426;
   --color-base-05: #28292b;
   --color-base-10: #2d2e30;
@@ -256,20 +253,20 @@ body,
   --background-secondary-alt: rgba(38, 39, 41, 0.92);
   --background-modifier-border: rgba(232, 232, 233, 0.1);
   --background-modifier-border-hover: rgba(238, 238, 239, 0.2);
-  --background-modifier-border-focus: rgba(185, 132, 65, 0.54);
+  --background-modifier-border-focus: color-mix(in srgb, var(--interactive-accent), transparent 46%);
   --background-modifier-hover: rgba(236, 236, 237, 0.07);
   --background-modifier-active-hover: rgba(236, 236, 237, 0.11);
   --background-modifier-form-field: rgba(16, 17, 18, 0.28);
   --background-modifier-message: rgba(32, 33, 35, 0.95);
   --interactive-normal: rgba(240, 240, 240, 0.07);
   --interactive-hover: rgba(240, 240, 240, 0.12);
-  --interactive-accent: #b9823f;
-  --interactive-accent-hover: #ca9451;
+  --interactive-accent: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+  --interactive-accent-hover: color-mix(in srgb, var(--interactive-accent), white 12%);
   --text-normal: #e8e4e7;
   --text-muted: #aaa4ad;
   --text-faint: #777181;
-  --text-accent: #d7a85d;
-  --text-accent-hover: #efc47c;
+  --text-accent: var(--interactive-accent);
+  --text-accent-hover: var(--interactive-accent-hover);
   --text-on-accent: #242424;
   --text-highlight-bg: rgba(226, 184, 74, 0.24);
   --code-background: rgba(18, 19, 20, 0.38);
@@ -280,9 +277,9 @@ body,
   --code-string: #8cc7ad;
   --code-value: #b8a6dc;
   --blockquote-color: #c8c2ca;
-  --blockquote-border-color: #b58a55;
+  --blockquote-border-color: var(--text-accent);
   --h1-color: #f0e9ef;
-  --h2-color: #e6b84d;
+  --h2-color: var(--text-accent);
   --h3-color: #d8c5df;
   --h4-color: #b8a8c2;
   --haze-app-gradient:
@@ -300,9 +297,6 @@ body,
 
 .theme-light {
   color-scheme: light;
-  --accent-h: 36;
-  --accent-s: 47%;
-  --accent-l: 50%;
   --color-base-00: #f5f2ef;
   --color-base-05: #f1eeeb;
   --color-base-10: #ebe8e6;
@@ -321,20 +315,20 @@ body,
   --background-secondary-alt: rgba(213, 216, 215, 0.95);
   --background-modifier-border: rgba(54, 48, 44, 0.1);
   --background-modifier-border-hover: rgba(54, 48, 44, 0.2);
-  --background-modifier-border-focus: rgba(168, 116, 52, 0.46);
+  --background-modifier-border-focus: color-mix(in srgb, var(--interactive-accent), transparent 54%);
   --background-modifier-hover: rgba(55, 50, 47, 0.055);
   --background-modifier-active-hover: rgba(55, 50, 47, 0.1);
   --background-modifier-form-field: rgba(255, 255, 255, 0.56);
   --background-modifier-message: rgba(246, 242, 238, 0.96);
   --interactive-normal: rgba(255, 255, 255, 0.5);
   --interactive-hover: rgba(255, 255, 255, 0.75);
-  --interactive-accent: #a8793f;
-  --interactive-accent-hover: #b98a4e;
+  --interactive-accent: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+  --interactive-accent-hover: color-mix(in srgb, var(--interactive-accent), black 10%);
   --text-normal: #302d2b;
   --text-muted: #6f6965;
   --text-faint: #9b9490;
-  --text-accent: #ac772f;
-  --text-accent-hover: #8e5c1e;
+  --text-accent: var(--interactive-accent);
+  --text-accent-hover: var(--interactive-accent-hover);
   --text-on-accent: #fffaf3;
   --text-highlight-bg: rgba(226, 184, 74, 0.26);
   --code-background: rgba(255, 255, 255, 0.58);
@@ -345,9 +339,9 @@ body,
   --code-string: #397964;
   --code-value: #705d9c;
   --blockquote-color: #655f5b;
-  --blockquote-border-color: #b08143;
+  --blockquote-border-color: var(--text-accent);
   --h1-color: #292624;
-  --h2-color: #927018;
+  --h2-color: var(--text-accent);
   --h3-color: #5c514b;
   --h4-color: #6c625d;
   --haze-app-gradient:
@@ -1400,78 +1394,28 @@ textarea,
   box-shadow: 0 1px 0 rgba(var(--mono-rgb-0), 0.22) inset;
 }
 
-/* Settings switches are drawn from the real checkbox state. Obsidian's
-   container state can be visually stale after a settings redraw, which made
-   an unchecked control look like an amber hollow switch. */
+/* Obsidian 1.12 stores the switch state on the container's .is-enabled class.
+   Keep the native input and thumb mechanics; only tune the two track colors. */
 .checkbox-container {
-  width: 38px !important;
-  height: 20px !important;
-  overflow: visible !important;
-  background: transparent !important;
-  background-image: none !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  outline: 0 !important;
-}
-
-.checkbox-container::before,
-.checkbox-container::after {
-  display: none !important;
-}
-
-.checkbox-container input[type="checkbox"] {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 38px !important;
-  height: 20px !important;
-  margin: 0 !important;
-  opacity: 1 !important;
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  cursor: pointer;
-  background: color-mix(in srgb, var(--text-muted), transparent 64%) !important;
-  background-image: none !important;
-  border: 0 !important;
-  border-radius: 999px !important;
-  box-shadow: none !important;
-  transition:
-    background-color 140ms var(--haze-ease),
-    background 140ms var(--haze-ease);
-}
-
-.checkbox-container input[type="checkbox"]::before {
-  content: "";
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #fffdfa;
+  background-color: color-mix(in srgb, var(--text-muted), transparent 64%);
+  border-color: transparent;
   box-shadow: none;
-  transform: translateX(0);
-  transition: transform 140ms var(--haze-ease);
 }
 
-.checkbox-container input[type="checkbox"]:hover {
-  background: color-mix(in srgb, var(--text-muted), transparent 52%) !important;
+.checkbox-container:hover {
+  background-color: color-mix(in srgb, var(--text-muted), transparent 52%);
 }
 
-.checkbox-container input[type="checkbox"]:checked {
-  background: var(--interactive-accent) !important;
+.checkbox-container.is-enabled {
+  background-color: var(--interactive-accent);
 }
 
-.checkbox-container input[type="checkbox"]:checked:hover {
-  background: var(--interactive-accent-hover) !important;
+.checkbox-container.is-enabled:hover {
+  background-color: var(--interactive-accent-hover);
 }
 
-.checkbox-container input[type="checkbox"]:checked::before {
-  transform: translateX(18px);
-}
-
-.checkbox-container input[type="checkbox"]:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--interactive-accent), transparent 48%) !important;
-  outline-offset: 2px;
+.checkbox-container:focus-within {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--interactive-accent), transparent 48%);
 }
 
 .modal,
