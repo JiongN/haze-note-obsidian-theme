@@ -1,5 +1,5 @@
 /*
-Haze Note 0.1.24
+Haze Note 0.1.25
 Personal macOS-first Obsidian theme by jn.
 No remote assets. No sound effects.
 */
@@ -42,6 +42,15 @@ settings:
     default: 0.72
     min: 0.18
     max: 0.94
+    step: 0.01
+  -
+    id: haze-popup-opacity
+    title: 弹窗与命令菜单浓度
+    description: 单独控制设置窗口、命令菜单、右键菜单和建议列表的底色浓度；数值越高，背景越不透明，文字越清晰。推荐 0.92–1.00。
+    type: variable-number-slider
+    default: 0.96
+    min: 0.72
+    max: 1
     step: 0.01
   -
     id: haze-layout-heading
@@ -129,6 +138,7 @@ settings:
 
 :root {
   --haze-surface-opacity: 0.72;
+  --haze-popup-opacity: 0.96;
   --haze-title-size: 30px;
   --font-text-size: 17px;
   --line-height-normal: 1.82;
@@ -190,7 +200,7 @@ body,
   --radius-l: 18px;
   --input-radius: 10px;
   --button-radius: 10px;
-  --tab-radius-active: 0;
+  --tab-radius-active: 10px;
   --modal-radius: 18px;
   --checkbox-radius: 5px;
   --divider-width: 1px;
@@ -608,11 +618,11 @@ body.mod-macos .workspace-tabs.mod-top-left-space .workspace-tab-header-containe
 }
 
 .workspace-tab-header {
-  min-height: calc(var(--haze-topbar-height) - 1px);
-  margin: 0;
+  min-height: calc(var(--haze-topbar-height) - 9px);
+  margin: 4px 3px;
   padding: 0 12px;
   border: 0;
-  border-radius: 0;
+  border-radius: var(--tab-radius-active);
   color: var(--haze-chrome-muted);
   transition:
     background-color var(--haze-fast) var(--haze-ease),
@@ -627,7 +637,7 @@ body.mod-macos .workspace-tabs.mod-top-left-space .workspace-tab-header-containe
 .workspace-tab-header-inner {
   width: 100%;
   border: 0;
-  border-radius: 0;
+  border-radius: inherit;
   background-color: transparent;
   background-image: none;
   box-shadow: none;
@@ -647,7 +657,7 @@ body.mod-macos .workspace-tabs.mod-top-left-space .workspace-tab-header-containe
 .workspace-tab-header.is-active,
 .workspace-tab-header.is-active:hover {
   color: var(--haze-chrome-text);
-  background: transparent;
+  background: var(--haze-chrome-hover);
   box-shadow: none;
 }
 
@@ -673,7 +683,7 @@ body.mod-macos .workspace-tabs.mod-top-left-space .workspace-tab-header-containe
 .workspace-split.mod-left-split .workspace-tab-header.is-active,
 .workspace-split.mod-right-split .workspace-tab-header.is-active {
   color: var(--haze-chrome-text);
-  background: transparent;
+  background: var(--haze-chrome-hover);
   box-shadow: none;
 }
 
@@ -1410,18 +1420,39 @@ textarea,
 .popover,
 .prompt {
   border: 1px solid var(--background-modifier-border);
-  background: color-mix(in srgb, var(--background-secondary-alt), transparent 4%);
   box-shadow: var(--haze-panel-shadow);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
 
-body.theme-light .modal {
-  background: rgba(246, 243, 240, 0.96);
+body.theme-light .modal,
+body.theme-light .menu,
+body.theme-light .suggestion-container,
+body.theme-light .popover,
+body.theme-light .prompt {
+  --text-normal: #302d2b;
+  --text-muted: #68615d;
+  --text-faint: #817873;
+  color: var(--text-normal);
+  background: rgba(246, 243, 240, var(--haze-popup-opacity));
 }
 
-body.theme-dark .modal {
-  background: rgba(37, 38, 40, 0.94);
+body.theme-dark .modal,
+body.theme-dark .menu,
+body.theme-dark .suggestion-container,
+body.theme-dark .popover,
+body.theme-dark .prompt {
+  --text-normal: #eceae7;
+  --text-muted: #bbb6b1;
+  --text-faint: #98938e;
+  color: var(--text-normal);
+  background: rgba(37, 38, 40, var(--haze-popup-opacity));
+}
+
+.prompt .prompt-input-container,
+.prompt .prompt-results,
+.suggestion-container .suggestion {
+  background: transparent;
 }
 
 body.theme-light .modal.mod-settings .setting-item-name,
