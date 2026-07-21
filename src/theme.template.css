@@ -1,5 +1,5 @@
 /*
-Haze Note 0.1.19
+Haze Note 0.1.20
 Personal macOS-first Obsidian theme by jn.
 No remote assets. No sound effects.
 */
@@ -967,6 +967,39 @@ body:not(.is-mobile) .workspace-leaf-content .view-header {
   width: var(--input-height);
   height: var(--input-height);
   margin: 0 !important;
+}
+
+/* Obsidian 1.12 Chinese UI renders the Aa toggle as an unlabeled sibling of
+   the search field. Attribute selectors cannot reach it, so reserve space in
+   the input itself and anchor that sibling within the same input row. */
+.workspace-leaf-content[data-type="search"] .search-input-container {
+  position: relative !important;
+  display: block !important;
+  min-height: var(--input-height) !important;
+}
+
+.workspace-leaf-content[data-type="search"] .search-input-container > input {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  padding-right: calc(var(--input-height) * 2 + 12px) !important;
+}
+
+.workspace-leaf-content[data-type="search"] .search-input-container > .search-input-clear-button {
+  position: absolute !important;
+  top: 50% !important;
+  right: 6px !important;
+  margin: 0 !important;
+  transform: translateY(-50%);
+}
+
+.workspace-leaf-content[data-type="search"] .search-input-container > :not(input):not(.search-input-clear-button) {
+  position: absolute !important;
+  top: 50% !important;
+  right: calc(var(--input-height) + 8px) !important;
+  z-index: 2;
+  margin: 0 !important;
+  transform: translateY(-50%);
 }
 
 .nav-files-container {
