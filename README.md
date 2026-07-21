@@ -20,7 +20,7 @@ Haze Note is a macOS-first Obsidian theme with a soft neutral glass frame, four 
 
 ## Development
 
-The distributable `theme.css` embeds four optimized WebP wallpapers and enforces a 700 KB size ceiling. Install `cwebp`, then rebuild after changing `src/theme.template.css` or an image:
+The distributable `theme.css` embeds four optimized 3840×2160 WebP wallpapers at `q=45` and enforces a 500 KB size ceiling. Install `cwebp`, then rebuild after changing `src/theme.template.css` or an image:
 
 ```bash
 node scripts/build-theme.mjs

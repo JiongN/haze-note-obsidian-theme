@@ -9,7 +9,8 @@ const themeDirectory = join(scriptDirectory, "..");
 const templatePath = join(themeDirectory, "src", "theme.template.css");
 const outputPath = join(themeDirectory, "theme.css");
 const execFileAsync = promisify(execFile);
-const maximumThemeSize = 700 * 1024;
+const wallpaperQuality = 45;
+const maximumThemeSize = 500 * 1024;
 
 const wallpapers = [
   ["__HAZE_WALLPAPER_DESERT__", "03_沙漠黄昏_4K.jpg"],
@@ -26,10 +27,10 @@ for (const [token, filename] of wallpapers) {
   }
 
   const sourcePath = join(themeDirectory, "assets", "wallpapers", filename);
-  const webpPath = join(themeDirectory, "assets", "wallpapers", `.${filename}.q60.webp`);
+  const webpPath = join(themeDirectory, "assets", "wallpapers", `.${filename}.q${wallpaperQuality}.webp`);
 
   try {
-    await execFileAsync("cwebp", ["-quiet", "-q", "60", sourcePath, "-o", webpPath]);
+    await execFileAsync("cwebp", ["-quiet", "-q", String(wallpaperQuality), sourcePath, "-o", webpPath]);
     const wallpaper = await readFile(webpPath);
     const dataUri = `data:image/webp;base64,${wallpaper.toString("base64")}`;
     output = output.replaceAll(token, dataUri);
