@@ -1,5 +1,5 @@
 /*
-Haze Note 0.1.28
+Haze Note 0.1.29
 Personal macOS-first Obsidian theme by jn.
 No remote assets. No sound effects.
 */
@@ -382,13 +382,8 @@ body.theme-dark {
   --haze-side-surface: rgba(30, 31, 33, var(--haze-surface-opacity));
   --haze-side-border: rgba(235, 235, 236, 0.09);
   --haze-root-border: rgba(235, 235, 236, 0.09);
-  /*
-  Use one opaque neutral surface for both header rows. A translucent color is
-  composited a different number of times by Obsidian's nested tab and view
-  containers, which allowed blue wallpapers to tint the view header while the
-  tab row stayed neutral.
-  */
-  --haze-shell-surface: rgb(29, 30, 31);
+  /* Keep the 0.1.27 glass surface for ribbons, sidebars and tab containers. */
+  --haze-shell-surface: rgba(29, 30, 31, clamp(0.78, calc(var(--haze-surface-opacity) + 0.05), 0.98));
   --haze-bottom-surface: rgba(22, 23, 25, clamp(0.4, calc(var(--haze-surface-opacity) + 0.16), 0.96));
   --haze-chrome-text: rgb(245, 245, 246);
   --haze-chrome-muted: rgba(245, 245, 246, 0.86);
@@ -462,12 +457,6 @@ body:not(.is-mobile) .workspace-split.mod-root {
       var(--haze-shell-surface) 0,
       var(--haze-shell-surface) var(--haze-topbar-height),
       transparent var(--haze-topbar-height)
-    ),
-    linear-gradient(
-      to top,
-      var(--haze-shell-surface) 0,
-      var(--haze-shell-surface) var(--haze-bottombar-height),
-      transparent var(--haze-bottombar-height)
     );
   border: 0;
   box-shadow: none;
@@ -526,15 +515,12 @@ body:not(.is-mobile) .markdown-preview-sizer {
   background-image: none;
 }
 
-/* The root split paints the two header rows; content starts its own surface below. */
+/* Keep the main reading/editing surface at one glass concentration from the
+   header boundary to the bottom edge. The real bottom controls overlay this
+   surface separately, so no transparent strip is reserved here. */
 body:not(.is-mobile) .workspace-split.mod-root .view-content {
-  background-color: transparent;
-  background-image: linear-gradient(
-    to bottom,
-    var(--haze-main-surface) 0,
-    var(--haze-main-surface) calc(100% - var(--haze-bottombar-height)),
-    transparent calc(100% - var(--haze-bottombar-height))
-  );
+  background-color: var(--haze-main-surface);
+  background-image: none;
 }
 
 body.mod-macos .titlebar {
@@ -831,14 +817,8 @@ body:not(.is-mobile) .workspace-leaf-content .view-header {
   color: var(--haze-chrome-text);
 }
 
-/*
-The active leaf may gain extra state classes while prompts or plugin panes are
-open. Paint both header rows explicitly at the root split so those states
-cannot fall back to a wallpaper-tinted core background.
-*/
-body.theme-dark:not(.is-mobile) .workspace-split.mod-root .workspace-tab-header-container,
-body.theme-dark:not(.is-mobile) .workspace-split.mod-root .workspace-leaf-content .view-header,
-body.theme-dark.mod-macos:not(.is-mobile) .titlebar {
+/* Only the current-file header is neutralized; every other surface stays 0.1.27. */
+body.theme-dark:not(.is-mobile) .workspace-split.mod-root .workspace-leaf-content .view-header {
   background: var(--haze-shell-surface);
 }
 
