@@ -9,8 +9,8 @@ const themeDirectory = join(scriptDirectory, "..");
 const templatePath = join(themeDirectory, "src", "theme.template.css");
 const outputPath = join(themeDirectory, "theme.css");
 const execFileAsync = promisify(execFile);
-const wallpaperQuality = 30;
-const maximumThemeSize = 380 * 1024;
+const wallpaperQuality = 12;
+const maximumThemeSize = 280 * 1024;
 
 const wallpapers = [
   ["__HAZE_WALLPAPER_DESERT__", "03_沙漠黄昏_4K.jpg"],
