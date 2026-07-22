@@ -50,4 +50,4 @@ if (outputSize > maximumThemeSize) {
 
 await writeFile(outputPath, output, "utf8");
 
-console.log(`Built ${outputPath} with four embedded 4K WebP wallpapers (${outputSize} bytes).`);
+console.log(`Built ${outputPath} with four embedded WebP wallpaper presets (${outputSize} bytes).`);

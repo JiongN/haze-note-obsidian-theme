@@ -1,5 +1,5 @@
 /*
-Haze Note 0.1.27
+Haze Note 0.1.28
 Personal macOS-first Obsidian theme by jn.
 No remote assets. No sound effects.
 */
@@ -17,7 +17,7 @@ settings:
   -
     id: haze-wallpaper
     title: 内置壁纸
-    description: 四张原创 4K 壁纸以 WebP 嵌入主题，不依赖网络。如需自定义图片，可在可选的 Haze Note 文件夹插件中选择库内图片。
+    description: 四张原创壁纸以 WebP 嵌入主题，不依赖网络。如需自定义图片，可在可选的 Haze Note 文件夹插件中选择库内图片。
     type: class-select
     allowEmpty: false
     default: haze-wallpaper-desert
@@ -382,8 +382,13 @@ body.theme-dark {
   --haze-side-surface: rgba(30, 31, 33, var(--haze-surface-opacity));
   --haze-side-border: rgba(235, 235, 236, 0.09);
   --haze-root-border: rgba(235, 235, 236, 0.09);
-  /* Keep macOS chrome neutral even when a saturated wallpaper is selected. */
-  --haze-shell-surface: rgba(29, 30, 31, clamp(0.78, calc(var(--haze-surface-opacity) + 0.05), 0.98));
+  /*
+  Use one opaque neutral surface for both header rows. A translucent color is
+  composited a different number of times by Obsidian's nested tab and view
+  containers, which allowed blue wallpapers to tint the view header while the
+  tab row stayed neutral.
+  */
+  --haze-shell-surface: rgb(29, 30, 31);
   --haze-bottom-surface: rgba(22, 23, 25, clamp(0.4, calc(var(--haze-surface-opacity) + 0.16), 0.96));
   --haze-chrome-text: rgb(245, 245, 246);
   --haze-chrome-muted: rgba(245, 245, 246, 0.86);
@@ -391,7 +396,7 @@ body.theme-dark {
   --haze-context-text: #cbc6ca;
 }
 
-/* Paint the 4K wallpaper exactly once. Every interface surface sits above it. */
+/* Paint the bundled wallpaper exactly once. Every interface surface sits above it. */
 body:not(.is-mobile) {
   background-color: #3a3b3c;
   background-image:
@@ -824,6 +829,17 @@ body:not(.is-mobile) .workspace-leaf-content .view-header {
   background-color: var(--haze-shell-surface);
   background-image: none;
   color: var(--haze-chrome-text);
+}
+
+/*
+The active leaf may gain extra state classes while prompts or plugin panes are
+open. Paint both header rows explicitly at the root split so those states
+cannot fall back to a wallpaper-tinted core background.
+*/
+body.theme-dark:not(.is-mobile) .workspace-split.mod-root .workspace-tab-header-container,
+body.theme-dark:not(.is-mobile) .workspace-split.mod-root .workspace-leaf-content .view-header,
+body.theme-dark.mod-macos:not(.is-mobile) .titlebar {
+  background: var(--haze-shell-surface);
 }
 
 .view-header-title {
