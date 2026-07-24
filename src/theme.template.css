@@ -1214,6 +1214,26 @@ body.haze-title-right .markdown-source-view.mod-cm6 .HyperMD-header-1 {
   color: var(--h2-color);
 }
 
+/* Keep emphasis visibly tied to the user-selected accent color in both
+   Reading view and the live editor. */
+.markdown-rendered strong,
+.markdown-rendered b,
+.markdown-source-view.mod-cm6 .cm-strong,
+.markdown-source-view.mod-cm6 .cm-formatting-strong {
+  color: var(--text-accent);
+  font-weight: var(--bold-weight);
+}
+
+.markdown-rendered u,
+.markdown-rendered ins,
+.markdown-source-view.mod-cm6 .cm-underline,
+.markdown-source-view.mod-cm6 .cm-formatting-underline {
+  color: var(--text-accent);
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 0.09em;
+  text-underline-offset: 0.16em;
+}
+
 .markdown-rendered a,
 .cm-hmd-internal-link,
 .cm-link,
