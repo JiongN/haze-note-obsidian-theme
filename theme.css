@@ -265,6 +265,7 @@ body,
   --text-accent: var(--interactive-accent);
   --text-accent-hover: var(--interactive-accent-hover);
   --text-on-accent: #242424;
+  --bold-color: var(--text-accent);
   --text-highlight-bg: rgba(226, 184, 74, 0.24);
   --code-background: rgba(18, 19, 20, 0.38);
   --code-normal: #ddd8df;
@@ -327,6 +328,7 @@ body,
   --text-accent: var(--interactive-accent);
   --text-accent-hover: var(--interactive-accent-hover);
   --text-on-accent: #fffaf3;
+  --bold-color: var(--text-accent);
   --text-highlight-bg: rgba(226, 184, 74, 0.26);
   --code-background: rgba(255, 255, 255, 0.58);
   --code-normal: #383330;
